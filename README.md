@@ -86,8 +86,10 @@ POST /product-factory-app/basket/${productId}/add-basket-list
 
 {
 
-      "product" : "kegel", 
-      "numberOfKegel": 100  
+       "productName" : "keg",
+       "material" : "sreel",
+       "weight" : 7.1,
+       "numberOfKeg" : 100  
         
 }
 
@@ -121,7 +123,7 @@ PUT /product-factory-app/products/add-product
  
   {
   
-      "product" : "kegel", 
+      "product" : "keg", 
       "numberOfKegel": 200
       
   }
@@ -144,7 +146,7 @@ Response: 200 OK
       "companyName" : "Пивной бар №1",
       "adress" : "г. Минск, ул. Пивная, 1",
       "accountNumber" : "1111 2222 3333 4444",
-      "product" : "kegel", 
+      "product" : "keg", 
       "numberOfKegel": 100,
       "totalCost" : 10000 
       
@@ -174,7 +176,7 @@ Response: 200 OK
       "adress" : "г. Минск, ул. Предприятий связанных с пивом",
       "accountNumber" : "2222 6666 4444 8888"
       },
-      "product" : "kegel", 
+      "product" : "keg", 
       "numberOfKegel": 100,
       "totalCost" : 10000  
          

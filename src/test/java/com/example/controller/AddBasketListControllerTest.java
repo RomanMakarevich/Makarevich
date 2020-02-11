@@ -13,19 +13,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class addBasketListTest {
+public class AddBasketListControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void TestAddBasketList() throws Exception {
-
 //        mockMvc.perform(post("/product-factory-app/basket/${productId}/add-basket-list")
 //                .contentType(MediaType.APPLICATION_JSON)
 //                .content("{\n" +
-//                        " \"product\" : \"kegel\", \n" +
-//                        " \"numberOfKegel\" : 100 \n" +
+//                        " \"productName\" : \"keg\",\n" +
+//                        " \"material\" : sreel, \n" +
+//                        " \"weight\" : 7.1, \n" +
+//                        " \"numberOfKeg\": 100 \n" +
 //                        "}"))
 //
 //                .andExpect(status().isOk());

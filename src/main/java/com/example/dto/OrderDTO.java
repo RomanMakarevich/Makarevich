@@ -1,18 +1,17 @@
 package com.example.dto;
 
-
+import lombok.Builder;
 import lombok.Data;
 
-
-/**
- * @author Wladimir Litvinov
- */
 @Data
-public class UserSignUpRequestDTO {
-    private String email;
-    private String password;
+@Builder
+public class OrderDTO {
+    private long id;
     private String fio;
     private String companyName;
     private String adress;
     private String accountNumber;
+    private String productName;
+    private long numberOfKeg;
+    private long totalCost;
 }
