@@ -4,6 +4,7 @@ import com.example.dto.UserSignInRequestDTO;
 import com.example.dto.UserSignUpRequestDTO;
 import com.example.service.UserService;
 import lombok.Data;
+import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,17 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author Wladimir Litvinov
  */
-
+@Log
 @Data
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping(value = "/sign-up", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)

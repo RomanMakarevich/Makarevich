@@ -13,7 +13,7 @@ MRPF-1 Как "Клиент" я хочу зарегистрироваться в
 
 Request:
 
-POST /product-factiry-app/customer/sign-up
+POST /product-factory-app/customer/sign-up
 
 
 {
@@ -21,9 +21,9 @@ POST /product-factiry-app/customer/sign-up
       "email" : "vasya@email.com",
       "password" : "qwerty",
       "fio" : "Пупкин Василий Иванович",
-      "company name" : "Пивной бар №1",
+      "companyName" : "Пивной бар №1",
       "adress" : "г. Минск, ул. Пивная, 1",
-      "account number" : "1111 2222 3333 4444" 
+      "accountNumber" : "1111 2222 3333 4444" 
       
 }
 
@@ -31,7 +31,7 @@ Response: 201 CREATED
 
 {
 
-  "id" : 1
+    "id" : 1
   
 }
 
@@ -41,19 +41,20 @@ MRPF-2 Как "Клиент", будучи ранее зарегистриров
 
 Request:
 
-POST /product-factiry-app/customer/sign-in
+POST /product-factory-app/customer/sign-in
 
 {
 
-  "email" : "vasya@email.com",
-  "password" : "qwerty"
+    "email" : "vasya@email.com",
+    "password" : "qwerty"
   
 }
+
 Response: 200 OK 
 
 {
 
-  "id" : 1
+    "id" : 1
   
 }
 
@@ -63,15 +64,16 @@ MRPF-3 Как "Клиент" я хочу получить список дост�
 
 Request:
 
-GET /product-factiry-app/products
+GET /product-factory-app/products
 
 Response: 200 OK
 
 {
 
-      "product" : "kegel",
-      "number of kegel": 1000,   
-            
+       "productName" : "keg",
+       "material" : "sreel",
+       "weight" : 7.1,
+       "numberOfKeg" : 1000   
 }
 
 
@@ -80,12 +82,12 @@ MRPF-4 Как "Клиент" я хочу добавить товар в корз
 
 Request:
 
-POST /product-factiry-app/basket/${productId}/add-basket-list
+POST /product-factory-app/basket/${productId}/add-basket-list
 
 {
 
       "product" : "kegel", 
-      "number of kegel": 100  
+      "numberOfKegel": 100  
         
 }
 
@@ -97,13 +99,13 @@ MRPF-5 Как "Клиент" я хочу оформить заказ, для п�
 
 Request:
 
-POST /product-factiry-app/basket/make-order
+POST /product-factory-app/basket/make-order
 
 Response: 200 OK
 
 {
 
-"The order is made"
+    "The order is made"
 
 }
 
@@ -115,12 +117,12 @@ MRPF-6 Как "Работник" я хочу произвести поступл
 Request:
 
 
-PUT /product-factiry-app/products/add-product
+PUT /product-factory-app/products/add-product
  
   {
   
       "product" : "kegel", 
-      "number of kegel": 200
+      "numberOfKegel": 200
       
   }
 
@@ -131,7 +133,7 @@ MRPF-7 Как "Работник" я хочу просмотреть список
 
 Request:
 
-GET /product-factiry-app/orders
+GET /product-factory-app/orders
 
 Response: 200 OK
 
@@ -139,11 +141,11 @@ Response: 200 OK
   
       "id" : 1,
       "fio" : "Пупкин Василий Иванович",
-      "company name" : "Пивной бар №1",
+      "companyName" : "Пивной бар №1",
       "adress" : "г. Минск, ул. Пивная, 1",
-      "account number" : "1111 2222 3333 4444",
+      "accountNumber" : "1111 2222 3333 4444",
       "product" : "kegel", 
-      "number of kegel": 100,
+      "numberOfKegel": 100,
       "totalCost" : 10000 
       
   }
@@ -153,27 +155,27 @@ MRPF-8 Как "Работник" я хочу обработать заказ, ч
 
 Request:
 
-POST /product-factiry-app/orders/${orderId}/complete-order
+POST /product-factory-app/orders/${orderId}/complete-order
 
 Response: 200 OK
 
   {
   
-      "order Id" : 1,
+      "orderId" : 1,
       "customer" : {
       "fio" : "Пупкин Василий Иванович",
-      "company name" : "Пивной бар №1",
+      "companyName" : "Пивной бар №1",
       "adress" : "г. Минск, ул. Пивная, 1",
-      "account number" : "1111 2222 3333 4444"
+      "accountNumber" : "1111 2222 3333 4444"
       
       },
       "seller" : {
-      "company name" : "Завод тары для пива", 
+      "companyName" : "Завод тары для пива", 
       "adress" : "г. Минск, ул. Предприятий связанных с пивом",
-      "account number" : "2222 6666 4444 8888"
+      "accountNumber" : "2222 6666 4444 8888"
       },
       "product" : "kegel", 
-      "number of kegel": 100,
+      "numberOfKegel": 100,
       "totalCost" : 10000  
          
   }
