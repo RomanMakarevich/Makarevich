@@ -10,6 +10,7 @@ import java.util.List;
 public class ProductService {
     public List<ProductDTO> getList() {
         return List.of(ProductDTO.builder()
+                .productId(1)
                 .productName("keg")
                 .material("sreel")
                 .weight(7.1)

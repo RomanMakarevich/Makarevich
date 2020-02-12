@@ -8,9 +8,10 @@ import lombok.Data;
 @Builder
 public class ProductDTO {
 
+    private long productId;
     private String productName;
     private String material;
     private double weight;
-    private int numberOfKeg;
+    private long numberOfKeg;
 
 }

@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -56,6 +57,15 @@ public class UserControllerTest {
                 .andExpect(content().json("{\n" +
                         "  \"id\" : 1\n" +
                         "}"));
+    }
+
+    @Test
+    public void testAddBasketList() throws Exception {
+        mockMvc.perform(post("/user/1/basket/1")
+                .header("userId", 1)
+                .header("productId", 1))
+
+                .andExpect(status().isOk());
     }
 
 }

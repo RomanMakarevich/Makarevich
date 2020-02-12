@@ -82,16 +82,8 @@ MRPF-4 Как "Клиент" я хочу добавить товар в корз
 
 Request:
 
-POST /product-factory-app/basket/${productId}/add-basket-list
+POST /product-factory-app/user/{userId}/basket/{productId}
 
-{
-
-       "productName" : "keg",
-       "material" : "sreel",
-       "weight" : 7.1,
-       "numberOfKeg" : 100  
-        
-}
 
 Response: 200 OK
 
@@ -101,7 +93,7 @@ MRPF-5 Как "Клиент" я хочу оформить заказ, для п�
 
 Request:
 
-POST /product-factory-app/basket/make-order
+POST /product-factory-app/user/{userId}/basket/make-order
 
 Response: 200 OK
 

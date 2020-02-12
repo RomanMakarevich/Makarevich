@@ -1,21 +1,17 @@
 package com.example.controller;
 
+import com.example.dto.ProductDTO;
 import com.example.dto.UserSignInRequestDTO;
 import com.example.dto.UserSignUpRequestDTO;
+import com.example.service.AddBasketListService;
 import com.example.service.UserService;
 import lombok.Data;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-/**
- * @author Wladimir Litvinov
- */
+
 @Log
 @Data
 @RestController
@@ -23,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+    private final AddBasketListService addBasketListService;
 
     @PostMapping(value = "/sign-up", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
@@ -35,5 +32,11 @@ public class UserController {
         return userService.signIn(request);
     }
 
+    @PostMapping(value = "{userId}/basket/{productId}")
+    public void addBasketList(@PathVariable final Long userId,
+                              @RequestHeader final Long productId) {
+        addBasketListService.addBasketList(userId, productId);
+
+    }
 
 }

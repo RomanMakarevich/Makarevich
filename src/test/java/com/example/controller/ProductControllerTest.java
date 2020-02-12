@@ -24,7 +24,8 @@ public class ProductControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
                         "  {\n" +
-                        " \"productName\" : \"keg\",\n" +
+                        " \"productId\" : 1, \n" +
+                        " \"productName\" : \"keg\", \n" +
                         " \"material\" : sreel, \n" +
                         " \"weight\" : 7.1, \n" +
                         " \"numberOfKeg\": 1000 \n" +
