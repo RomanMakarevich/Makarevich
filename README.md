@@ -177,7 +177,7 @@ Response: 200 OK
       "accountNumber" : "2222 6666 4444 8888"
       },
       "product" : "keg", 
-      "numberOfKegel": 100,
+      "numberOfKeg": 100,
       "totalCost" : 10000  
          
   }

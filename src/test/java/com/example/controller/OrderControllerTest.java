@@ -30,7 +30,7 @@ public class OrderControllerTest {
                         " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
                         " \"productName\" : \"keg\", \n" +
                         " \"numberOfKeg\": 100, \n" +
-                        " \"totalCost\" : 10000 \n" +
+                        " \"totalCost\" : 1000 \n" +
                         "  }\n" +
                         "]"));
 

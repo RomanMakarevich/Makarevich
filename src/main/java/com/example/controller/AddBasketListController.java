@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @Log
 @Data
 @RestController
-@RequestMapping("/product-factory-appbasket")
+@RequestMapping("/product-factory-app/basket")
 public class AddBasketListController {
 
-    private final ProductService productService;
-
-    @PostMapping(value = "/${productId}/add-basket-list", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addBascetList(@PathVariable final long productID){
-
-    }
+//    private final ProductService productService;
+//
+//    @PostMapping(value = "/{productId}/add-basket-list", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public void addBascetList(@PathVariable final long productId){
+//
+//    }
 }
