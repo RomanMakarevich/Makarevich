@@ -122,8 +122,10 @@ PUT /product-factory-app/products/${productId}
  
   {
   
-      "product" : "keg", 
-      "numberOfKegel": 200
+      "productName" : "keg",
+      "material" : "sreel",
+      "weight" : 7.1,
+      "numberOfKeg" : 1000
       
   }
 
@@ -156,9 +158,11 @@ MRPF-8 Как "Работник" я хочу обработать заказ, ч
 
 Request:
 
-POST /product-factory-app/orders/${orderId}/complete-order
+GET /product-factory-app/orders/${orderId}
 
 Response: 200 OK
+
+[
 
   {
   
@@ -175,8 +179,11 @@ Response: 200 OK
       "adress" : "г. Минск, ул. Предприятий связанных с пивом",
       "accountNumber" : "2222 6666 4444 8888"
       },
+      
       "product" : "keg", 
       "numberOfKeg": 100,
       "totalCost" : 1000  
          
   }
+  
+]
