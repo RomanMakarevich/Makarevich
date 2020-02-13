@@ -23,19 +23,4 @@ public class CompleteOrderDTO {
     private long numberOfKeg;
     private long totalCost;
 
-//    private OrderDTO orderDTO;
-//    private long orderId = orderDTO.getId();
-//    private UserSignUpRequestDTO userSignUpRequestDTO;
-//    private String fio = userSignUpRequestDTO.getFio();
-//    private String companyNameCustomer = userSignUpRequestDTO.getCompanyName();
-//    private String adressCustomer = userSignUpRequestDTO.getAdress();
-//    private String accountNumberCustomer = userSignUpRequestDTO.getAccountNumber();
-//    private String companyNameSeller;
-//    private String adressSeller;
-//    private String accountNumberSeller;
-//    private ProductDTO productDTO;
-//    private String productName = productDTO.getProductName();
-//    private long numberOfKeg = productDTO.getNumberOfKeg();
-//    private long totalCost;
-
 }

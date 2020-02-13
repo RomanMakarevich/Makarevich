@@ -20,7 +20,7 @@ public class UserController {
 
     private final UserService userService;
     private final AddBasketListService addBasketListService;
-//    private final MakeOrderService makeOrderService;
+    private final MakeOrderService makeOrderService;
 
     @PostMapping(value = "/sign-up", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
@@ -40,9 +40,9 @@ public class UserController {
 
     }
 
-//    @PostMapping(value = "/{userId}/basket")
-//    public void makeOrder(@PathVariable final Long userId) {
-//        makeOrderService.makeOrder(userId);
-//    }
+    @PostMapping(value = "/{userId}/basket")
+    public void makeOrder(@PathVariable final Long userId) {
+        makeOrderService.makeOrder(userId);
+    }
 
 }

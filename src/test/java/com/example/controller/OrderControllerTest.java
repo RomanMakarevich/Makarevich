@@ -18,14 +18,14 @@ public class OrderControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void testProduct() throws Exception {
+    public void testOrder() throws Exception {
         mockMvc.perform(get("/product-factory-app/orders"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
                         "  {\n" +
                         " \"id\" : 1, \n" +
-                        " \"fio\" : \"Пупкин Василий Иванович\",\n" +
-                        " \"companyName\" : \"Пивной бар №1\",\n" +
+                        " \"fio\" : \"Пупкин Василий Иванович\", \n" +
+                        " \"companyName\" : \"Пивной бар №1\", \n" +
                         " \"adress\" : \"г. Минск, ул. Пивная, 1\", \n" +
                         " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
                         " \"productName\" : \"keg\", \n" +

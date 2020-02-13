@@ -1,9 +1,11 @@
 package com.example.service;
 
 import com.example.dto.OrderDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MakeOrderService {
     public List<OrderDTO> makeOrder(final long userId){
         return List.of(OrderDTO.builder()

@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class CompliteOrderTest {
+public class CompliteOrderControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
