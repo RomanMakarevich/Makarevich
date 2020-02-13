@@ -8,15 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class UserControllerTest {
+public class UserControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -61,11 +60,29 @@ public class UserControllerTest {
 
     @Test
     public void testAddBasketList() throws Exception {
-        mockMvc.perform(post("/user/1/basket/1")
+        mockMvc.perform(put("/user/1/basket/1")
                 .header("userId", 1)
                 .header("productId", 1))
 
                 .andExpect(status().isOk());
     }
+
+//    @Test
+//    public void testMakeOrder() throws Exception {
+//        mockMvc.perform(post("/user/1/basket")
+//                .header("userId", 1))
+//
+//                .andExpect(status().isOk())
+//                .andExpect(content().json("{\n" +
+//                        " \"id\" : 1, \n" +
+//                        " \"fio\" : \"Пупкин Василий Иванович\",\n" +
+//                        " \"companyName\" : \"Пивной бар №1\",\n" +
+//                        " \"adress\" : \"г. Минск, ул. Пивная, 1\", \n" +
+//                        " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
+//                        " \"productName\" : \"keg\", \n" +
+//                        " \"numberOfKeg\": 100, \n" +
+//                        " \"totalCost\" : 1000 \n" +
+//                        "}"));
+//    }
 
 }

@@ -82,7 +82,7 @@ MRPF-4 Как "Клиент" я хочу добавить товар в корз
 
 Request:
 
-POST /product-factory-app/user/{userId}/basket/{productId}
+POST /product-factory-app/user/${userId}/basket/${productId}
 
 
 Response: 200 OK
@@ -93,13 +93,20 @@ MRPF-5 Как "Клиент" я хочу оформить заказ, для п�
 
 Request:
 
-POST /product-factory-app/user/{userId}/basket/make-order
+POST /product-factory-app/user/${userId}/basket/
 
 Response: 200 OK
 
 {
 
-    "The order is made"
+    "id" : 1,
+    "fio" : "Пупкин Василий Иванович",
+    "companyName" : "Пивной бар №1",
+    "adress" : "г. Минск, ул. Пивная, 1",
+    "accountNumber" : "1111 2222 3333 4444",
+    "product" : "keg", 
+    "numberOfKegel": 100,
+    "totalCost" : 1000 
 
 }
 
@@ -111,7 +118,7 @@ MRPF-6 Как "Работник" я хочу произвести поступл
 Request:
 
 
-PUT /product-factory-app/products/add-product
+PUT /product-factory-app/products/${productId}
  
   {
   
@@ -127,7 +134,7 @@ MRPF-7 Как "Работник" я хочу просмотреть список
 
 Request:
 
-GET /product-factory-app/orders
+POST /product-factory-app/orders
 
 Response: 200 OK
 
@@ -140,7 +147,7 @@ Response: 200 OK
       "accountNumber" : "1111 2222 3333 4444",
       "product" : "keg", 
       "numberOfKegel": 100,
-      "totalCost" : 10000 
+      "totalCost" : 1000 
       
   }
 
@@ -170,6 +177,6 @@ Response: 200 OK
       },
       "product" : "keg", 
       "numberOfKeg": 100,
-      "totalCost" : 10000  
+      "totalCost" : 1000  
          
   }

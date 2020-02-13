@@ -1,9 +1,9 @@
 package com.example.controller;
 
-import com.example.dto.ProductDTO;
 import com.example.dto.UserSignInRequestDTO;
 import com.example.dto.UserSignUpRequestDTO;
 import com.example.service.AddBasketListService;
+import com.example.service.MakeOrderService;
 import com.example.service.UserService;
 import lombok.Data;
 import lombok.extern.java.Log;
@@ -20,6 +20,7 @@ public class UserController {
 
     private final UserService userService;
     private final AddBasketListService addBasketListService;
+//    private final MakeOrderService makeOrderService;
 
     @PostMapping(value = "/sign-up", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
@@ -32,11 +33,16 @@ public class UserController {
         return userService.signIn(request);
     }
 
-    @PostMapping(value = "{userId}/basket/{productId}")
+    @PutMapping(value = "/{userId}/basket/{productId}")
     public void addBasketList(@PathVariable final Long userId,
-                              @RequestHeader final Long productId) {
+                              @PathVariable final Long productId) {
         addBasketListService.addBasketList(userId, productId);
 
     }
+
+//    @PostMapping(value = "/{userId}/basket")
+//    public void makeOrder(@PathVariable final Long userId) {
+//        makeOrderService.makeOrder(userId);
+//    }
 
 }
