@@ -1,6 +1,6 @@
-package com.example.security;
-
-public enum Roles {
-    USER,
-    EMPLOYEE
-}
+//package com.example.security;
+//
+//public enum Roles {
+//    USER,
+//    EMPLOYEE
+//}
