@@ -67,25 +67,25 @@ public class UserControllerTests {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void testMakeOrder() throws Exception {
-        mockMvc.perform(post("/user/1/basket")
-                .header("userId", 1))
-
-                .andExpect(status().isOk())
-                .andExpect(content().json("[\n" +
-                        "  {\n" +
-                        " \"id\" : 1, \n" +
-                        " \"fio\" : \"Пупкин Василий Иванович\",\n" +
-                        " \"companyName\" : \"Пивной бар №1\",\n" +
-                        " \"adress\" : \"г. Минск, ул. Пивная, 1\", \n" +
-                        " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
-                        " \"productName\" : \"keg\", \n" +
-                        " \"numberOfKeg\": 100, \n" +
-                        " \"totalCost\" : 1000 \n" +
-                        "  }\n" +
-                        "]"));
-
-    }
+//    @Test
+//    public void testMakeOrder() throws Exception {
+//        mockMvc.perform(post("/user/1/basket")
+//                .header("userId", 1))
+//
+//                .andExpect(status().isOk())
+//                .andExpect(content().json("[\n" +
+//                        "  {\n" +
+//                        " \"id\" : 1, \n" +
+//                        " \"fio\" : \"Пупкин Василий Иванович\",\n" +
+//                        " \"companyName\" : \"Пивной бар №1\",\n" +
+//                        " \"adress\" : \"г. Минск, ул. Пивная, 1\", \n" +
+//                        " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
+//                        " \"productName\" : \"keg\", \n" +
+//                        " \"numberOfKeg\": 100, \n" +
+//                        " \"totalCost\" : 1000 \n" +
+//                        "  }\n" +
+//                        "]"));
+//
+//    }
 
 }
