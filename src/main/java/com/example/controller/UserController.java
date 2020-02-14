@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.OrderDTO;
 import com.example.dto.UserSignInRequestDTO;
 import com.example.dto.UserSignUpRequestDTO;
 import com.example.service.AddBasketListService;
@@ -10,6 +11,8 @@ import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Log
@@ -41,8 +44,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/{userId}/basket")
-    public void makeOrder(@PathVariable final Long userId) {
-        makeOrderService.makeOrder(userId);
+    public List<OrderDTO> makeOrder(@PathVariable final Long userId) {
+        return makeOrderService.makeOrder(userId);
     }
 
 }
