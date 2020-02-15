@@ -31,8 +31,9 @@ Response: 201 CREATED
 
 {
 
-    "id" : 1
-  
+    "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXN5YUBlbWFpbC5jb20iLCJleHAiOjE1ODE4MTY1OTQsImlhdCI6MTU4MTc4MDU5NH0
+    .zLBFfajJ1RuyIaTuYpsa-YdjdZP1DIIpxLWbOZS6YGo"
+ 
 }
 
 
@@ -54,7 +55,8 @@ Response: 200 OK
 
 {
 
-    "id" : 1
+    "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXN5YUBlbWFpbC5jb20iLCJleHAiOjE1ODE4MTY1OTQsImlhdCI6MTU4MTc4MDU5NH0
+        .zLBFfajJ1RuyIaTuYpsa-YdjdZP1DIIpxLWbOZS6YGo"
   
 }
 

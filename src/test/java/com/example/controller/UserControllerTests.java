@@ -7,7 +7,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.hamcrest.Matchers.hasLength;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,9 +37,7 @@ public class UserControllerTests {
                         "}"))
                 // then
                 .andExpect(status().isCreated())
-                .andExpect(content().json("{\n" +
-                        "  \"id\" : 1\n" +
-                        "}"));
+                .andExpect(jsonPath("token", hasLength(144)));
     }
 
     @Test
@@ -53,9 +52,7 @@ public class UserControllerTests {
                         "}"))
                 // then
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\n" +
-                        "  \"id\" : 1\n" +
-                        "}"));
+                .andExpect(jsonPath("token", hasLength(144)));
     }
 
     @Test
@@ -68,7 +65,7 @@ public class UserControllerTests {
     }
 
     @Test
-    public void testMakeOrder() throws Exception {
+    public void testCreateOrder() throws Exception {
         mockMvc.perform(post("/user/1/basket")
                 .header("userId", 1))
 

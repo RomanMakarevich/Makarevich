@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MakeOrderService {
-    public List<OrderDTO> makeOrder(final long userId){
+public class CreateOrderService {
+    public List<OrderDTO> createOrder(final long userId){
         return List.of(OrderDTO.builder()
                 .id(1)
                 .fio("Пупкин Василий Иванович")
