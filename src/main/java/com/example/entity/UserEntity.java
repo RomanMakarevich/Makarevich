@@ -15,7 +15,6 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String email;
-    private String password;
     private String fio;
     private String companyName;
     private String adress;
