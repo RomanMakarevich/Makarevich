@@ -21,17 +21,17 @@ public class LoadUserDetailService implements UserDetailsService {
     private final Map<String, String> inMemoryUsers = new HashMap<>();
 
     @Override
-    public UserDetails loadUserByUsername(final String userName) throws UsernameNotFoundException {
-        final String password = inMemoryUsers.get(userName);
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+        final String password = inMemoryUsers.get(username);
         if(password == null){
             return null;
         }else {
-            return new User(userName, password, Collections.emptyList());
+            return new User(username, password, Collections.emptyList());
         }
 
     }
 
-    public void saveUser(final String userName, final String password){
-        inMemoryUsers.put(userName, passwordEncoder.encode(password));
+    public void saveUser(final String username, final String password){
+        inMemoryUsers.put(username, passwordEncoder.encode(password));
     }
 }
