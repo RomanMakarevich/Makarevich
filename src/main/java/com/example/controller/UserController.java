@@ -1,9 +1,6 @@
 package com.example.controller;
 
-import com.example.dto.OrderDTO;
-import com.example.dto.UserSignInRequestDTO;
-import com.example.dto.UserSignInResponseDTO;
-import com.example.dto.UserSignUpRequestDTO;
+import com.example.dto.*;
 import com.example.ecxeption.SuchUserAlreadyExistException;
 import com.example.security.JwtUtil;
 import com.example.service.AddBasketListService;
@@ -56,8 +53,8 @@ public class UserController {
 
     @PutMapping(value = "/{userId}/basket/{productId}")
     public void addBasketList(@PathVariable final Long userId,
-                              @PathVariable final Long productId) {
-        addBasketListService.addBasketList(userId, productId);
+                              @RequestBody final WarehouseDTO request) {
+        addBasketListService.addBasketList(userId, request);
 
     }
 

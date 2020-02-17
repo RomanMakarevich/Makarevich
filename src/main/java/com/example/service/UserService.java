@@ -21,7 +21,7 @@ public class UserService {
 
     private final AuthInfoRepository authInfoRepository;
     private final UserRepository userRepository;
-    private UserSignUpRequestMapper userSignUpRequestMapper;
+    private final UserSignUpRequestMapper userSignUpRequestMapper;
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
