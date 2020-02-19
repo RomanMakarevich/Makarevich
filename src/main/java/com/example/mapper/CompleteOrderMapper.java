@@ -4,7 +4,7 @@ import com.example.dto.CompleteOrderDTO;
 import com.example.entity.CompleteOrderEntity;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "string")
+@Mapper(componentModel = "spring")
 public interface CompleteOrderMapper {
     CompleteOrderEntity sourceToDestination(CompleteOrderDTO source);
 

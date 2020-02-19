@@ -4,7 +4,7 @@ import com.example.dto.BasketDTO;
 import com.example.entity.BasketEntity;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "string")
+@Mapper(componentModel = "spring")
 public interface BasketMapper {
     BasketEntity sourceToDestination(BasketDTO source);
 

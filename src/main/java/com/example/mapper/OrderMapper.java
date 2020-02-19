@@ -5,7 +5,7 @@ import com.example.entity.OrderEntity;
 import org.mapstruct.Mapper;
 
 
-@Mapper(componentModel = "string")
+@Mapper(componentModel = "spring")
 public interface OrderMapper {
     OrderEntity sourceToDestination(OrderDTO source);
 
