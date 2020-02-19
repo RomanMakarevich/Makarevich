@@ -17,6 +17,6 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "basket_id", nullable = false)
     private BasketEntity basketEntity;
-    private long totalCost;
+    private double totalCost;
 
 }

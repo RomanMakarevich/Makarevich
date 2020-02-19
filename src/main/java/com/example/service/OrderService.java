@@ -33,6 +33,10 @@ public class OrderService {
         final BasketEntity basketEntity = basketRepositoty.getOne(userId);
         final OrderEntity orderEntity = new OrderEntity();
 
+        orderEntity.setBasketEntity(basketEntity);
+        orderEntity.setUserEntity(basketEntity.getUserEntity());
+        orderEntity.setTotalCost(basketEntity.getTotalCost());
+
         basketRepositoty.deleteById(userId);
         orderRepository.save(orderEntity);
         return orderMapper.destinationToSource(orderEntity);

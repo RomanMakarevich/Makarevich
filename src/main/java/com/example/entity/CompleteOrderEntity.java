@@ -18,6 +18,6 @@ public class CompleteOrderEntity {
     private String companyNameSeller;
     private String adressSeller;
     private String accountNumberSeller;
-//    private List<WarehouseEntity> basketList;
+    private List<WarehouseEntity> basketList;
     private double totalCost;
 }
