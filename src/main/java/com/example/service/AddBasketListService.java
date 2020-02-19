@@ -8,6 +8,8 @@ import com.example.reposiroty.BasketRepositoty;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -19,9 +21,16 @@ public class AddBasketListService {
     BasketEntity basketEntity;
     final WarehouseMapper warehouseMapper;
 
+    @Transactional
     public void addBasketList(final long userId, final WarehouseDTO request) {
         warehouseEntity = warehouseMapper.sourceToDestination(request);
         basketEntity.setBasketList(List.of(warehouseEntity));
+        basketEntity.setTotalCost(basketEntity.
+                getTotalCost() + basketEntity.
+                getBasketList().
+                stream().
+                mapToDouble(WarehouseEntity::getCost).
+                sum());
         basketRepositoty.save(basketEntity);
     }
 }

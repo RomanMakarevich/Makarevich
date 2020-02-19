@@ -138,7 +138,7 @@ MRPF-7 Как "Работник" я хочу просмотреть список
 
 Request:
 
-POST /product-factory-app/orders
+GET /product-factory-app/orders//{orderId}
 
 Response: 200 OK
 
@@ -160,7 +160,7 @@ MRPF-8 Как "Работник" я хочу обработать заказ, ч
 
 Request:
 
-GET /product-factory-app/orders/${orderId}
+POST /product-factory-app/orders/{orderId}
 
 Response: 200 OK
 

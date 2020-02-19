@@ -6,13 +6,16 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@Entity
+@Entity(name = "basket")
 public class BasketEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @OneToOne(optional = false)
-    @JoinColumn(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private WarehouseEntity warehouseEntity;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity userEntity;
+    @ManyToMany
+    @JoinColumn(name = "warehouse_id")
     private List<WarehouseEntity> basketList;
+    private double totalCost;
 }

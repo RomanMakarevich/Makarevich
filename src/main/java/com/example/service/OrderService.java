@@ -1,22 +1,41 @@
 package com.example.service;
 
 import com.example.dto.OrderDTO;
+import com.example.entity.BasketEntity;
+import com.example.entity.OrderEntity;
+import com.example.mapper.OrderMapper;
+import com.example.reposiroty.BasketRepositoty;
+import com.example.reposiroty.OrderRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class OrderService {
-    public List<OrderDTO> getList() {
-        return List.of(OrderDTO.builder()
-                .id(1)
-                .fio("Пупкин Василий Иванович")
-                .companyName("Пивной бар №1")
-                .adress("г. Минск, ул. Пивная, 1")
-                .accountNumber("1111 2222 3333 4444")
-                .productName("keg")
-                .numberOfKeg(100)
-                .totalCost(1000)
-                .build());
+
+    private final OrderRepository orderRepository;
+    private OrderEntity orderEntity;
+    private final OrderMapper orderMapper;
+    private final BasketRepositoty basketRepositoty;
+    private BasketEntity basketEntity;
+    private OrderDTO orderDTO;
+
+
+    public OrderDTO getList(final long orderid) {
+        orderEntity = orderRepository.getOne(orderid);
+        orderDTO = orderMapper.destinationToSource(orderEntity);
+        return orderDTO;
+    }
+
+    @Transactional
+    public OrderDTO createOrder(final long userId) {
+        basketEntity = basketRepositoty.getOne(userId);
+        basketRepositoty.deleteById(userId);
+        orderRepository.save(orderEntity);
+        return orderMapper.destinationToSource(orderEntity);
     }
 }

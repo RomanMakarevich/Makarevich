@@ -12,5 +12,6 @@ public class ProductDTO {
     private String productName;
     private String material;
     private double weight;
+    private double cost;
 
 }

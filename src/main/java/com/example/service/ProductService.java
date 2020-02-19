@@ -7,6 +7,7 @@ import com.example.reposiroty.ProductRepository;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
+    @Transactional
     public void init() {
         productRepository.save(productMapper.sourceToDestination(ProductDTO.builder()
                 .productId(1)
@@ -28,10 +30,11 @@ public class ProductService {
 
     }
 
-    public List<ProductDTO> getList(){
+    public List<ProductDTO> getList() {
         return productRepository.findAll().stream().map(productMapper::destinationToSource).collect(Collectors.toList());
     }
-    public Optional<ProductDTO> getProduct(final long id){
+
+    public Optional<ProductDTO> getProduct(final long id) {
         return productRepository.findById(id).map(productMapper::destinationToSource);
     }
 }

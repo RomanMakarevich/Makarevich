@@ -8,6 +8,7 @@ import com.example.reposiroty.WarehouseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -18,6 +19,7 @@ public class WarehouseService {
     final WarehouseMapper warehouseMapper;
     WarehouseEntity warehouseEntity;
 
+    @Transactional
     public void addProduct(final WarehouseDTO request) {
         warehouseEntity = warehouseMapper.sourceToDestination(request);
         warehouseRepository.getOne(request.getNumberOfProduct())
@@ -26,7 +28,7 @@ public class WarehouseService {
                                 getId()).getNumberOfProduct() + warehouseEntity.getNumberOfProduct());
     }
 
-    public final WarehouseDTO getProduct(final long productId){
+    public final WarehouseDTO getProduct(final long productId) {
         return warehouseMapper.destinationToSource(warehouseRepository.getOne(productId));
     }
 }

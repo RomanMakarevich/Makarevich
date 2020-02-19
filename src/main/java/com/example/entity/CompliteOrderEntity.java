@@ -1,18 +1,16 @@
-package com.example.dto;
+package com.example.entity;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.extern.java.Log;
 
+import javax.persistence.*;
 import java.util.List;
 
-
 @Data
-@Builder
-public class CompleteOrderDTO {
-
-
-    private long orderId;
+@Entity(name = "compliteOrder")
+public class CompliteOrderEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String fio;
     private String companyNameCustomer;
     private String adressCustomer;
@@ -20,7 +18,6 @@ public class CompleteOrderDTO {
     private String companyNameSeller;
     private String adressSeller;
     private String accountNumberSeller;
-//    private List<WarehouseDTO> basketList;
-    private long totalCost;
-
+//    private List<WarehouseEntity> basketList;
+    private double totalCost;
 }

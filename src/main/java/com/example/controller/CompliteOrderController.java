@@ -16,7 +16,7 @@ public class CompliteOrderController {
     private final CompliteOrderService compliteOrderService;
 
     @PostMapping (value = "/orders/{orderId}")
-    public List<CompleteOrderDTO> compliteOrder(@PathVariable final long orderId) throws Exception{
-        return compliteOrderService.getList(orderId);
+    public CompleteOrderDTO compliteOrder(@PathVariable final long orderId) throws Exception{
+        return compliteOrderService.compliteOrder(orderId);
     }
 }

@@ -2,20 +2,21 @@ package com.example.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
-@Entity
+@Entity(name = "order")
 public class OrderEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity userEntity;
-    private ProductEntity productEntity;
+    @ManyToOne
+    @JoinColumn(name = "basket_id", nullable = false)
+    private BasketEntity basketEntity;
     private long totalCost;
 
 }

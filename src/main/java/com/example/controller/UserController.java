@@ -5,6 +5,7 @@ import com.example.ecxeption.SuchUserAlreadyExistException;
 import com.example.security.JwtUtil;
 import com.example.service.AddBasketListService;
 import com.example.service.CreateOrderService;
+import com.example.service.OrderService;
 import com.example.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +30,7 @@ public class UserController {
 
     private final UserService userService;
     private final AddBasketListService addBasketListService;
-    private final CreateOrderService createOrderService;
+    private final OrderService orderService;
 
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
@@ -59,8 +60,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/{userId}/basket")
-    public List<OrderDTO> createOrder(@PathVariable final Long userId) {
-        return createOrderService.createOrder(userId);
+    public OrderDTO createOrder(@PathVariable final Long userId) {
+        return orderService.createOrder(userId);
     }
 
 }

@@ -9,4 +9,5 @@ import java.util.List;
 @Builder
 public class BasketDTO {
     private List<WarehouseDTO> basketList;
+    private double totalCost;
 }
