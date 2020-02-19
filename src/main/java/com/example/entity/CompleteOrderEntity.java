@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@Entity(name = "compliteOrder")
-public class CompliteOrderEntity {
+@Entity(name = "completeOrder")
+public class CompleteOrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

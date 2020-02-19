@@ -1,9 +1,9 @@
 package com.example.reposiroty;
 
-import com.example.entity.CompliteOrderEntity;
+import com.example.entity.CompleteOrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CompliteOrderRepository extends JpaRepository<CompliteOrderEntity, Long> {
+public interface CompleteOrderRepository extends JpaRepository<CompleteOrderEntity, Long> {
 }

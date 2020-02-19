@@ -18,22 +18,21 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private OrderEntity orderEntity;
     private final OrderMapper orderMapper;
     private final BasketRepositoty basketRepositoty;
-    private BasketEntity basketEntity;
-    private OrderDTO orderDTO;
 
 
     public OrderDTO getList(final long orderid) {
-        orderEntity = orderRepository.getOne(orderid);
-        orderDTO = orderMapper.destinationToSource(orderEntity);
-        return orderDTO;
+        final OrderEntity orderEntity = orderRepository.getOne(orderid);
+
+        return orderMapper.destinationToSource(orderEntity);
     }
 
     @Transactional
     public OrderDTO createOrder(final long userId) {
-        basketEntity = basketRepositoty.getOne(userId);
+        final BasketEntity basketEntity = basketRepositoty.getOne(userId);
+        final OrderEntity orderEntity = new OrderEntity();
+
         basketRepositoty.deleteById(userId);
         orderRepository.save(orderEntity);
         return orderMapper.destinationToSource(orderEntity);

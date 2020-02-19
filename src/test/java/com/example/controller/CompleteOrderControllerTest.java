@@ -12,13 +12,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc(addFilters = false)
-public class CompliteOrderControllerTest {
+public class CompleteOrderControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void compliteOrder() throws Exception {
+    public void completeOrder() throws Exception {
         mockMvc.perform(post("/product-factory-app/orders/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(" [\n" +
