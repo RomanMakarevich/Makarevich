@@ -27,10 +27,10 @@ public class CompleteOrderService {
         final OrderEntity orderEntity = orderRepository.findById(orderId).get();
         completeOrderEntity.setFio(orderEntity.getUserEntity().getFio());
         completeOrderEntity.setCompanyNameCustomer(orderEntity.getUserEntity().getCompanyName());
-        completeOrderEntity.setAdressCustomer(orderEntity.getUserEntity().getAdress());
+        completeOrderEntity.setAddressCustomer(orderEntity.getUserEntity().getAddress());
         completeOrderEntity.setAccountNumberCustomer(orderEntity.getUserEntity().getAccountNumber());
         completeOrderEntity.setCompanyNameSeller("Завод тары для пива");
-        completeOrderEntity.setAdressSeller("г. Минск, ул. Предприятий связанных с пивом");
+        completeOrderEntity.setAddressSeller("г. Минск, ул. Предприятий связанных с пивом");
         completeOrderEntity.setAccountNumberSeller("2222 6666 4444 8888");
         completeOrderEntity.setBasketList(orderEntity.getBasketEntity().getBasketList());
         completeOrderEntity.setTotalCost(orderEntity.getTotalCost());

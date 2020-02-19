@@ -8,6 +8,6 @@ public class UserDTO {
     private String email;
     private String fio;
     private String companyName;
-    private String adress;
+    private String address;
     private String accountNumber;
 }

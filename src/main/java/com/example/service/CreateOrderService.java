@@ -12,10 +12,10 @@ public class CreateOrderService {
                 .id(1)
                 .fio("Пупкин Василий Иванович")
                 .companyName("Пивной бар №1")
-                .adress("г. Минск, ул. Пивная, 1")
+                .address("г. Минск, ул. Пивная, 1")
                 .accountNumber("1111 2222 3333 4444")
                 .productName("keg")
-                .numberOfKeg(100)
+                .numberOfProduct(100)
                 .totalCost(1000)
                 .build());
     }

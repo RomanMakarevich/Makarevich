@@ -17,7 +17,7 @@ public class UserEntity {
     private String email;
     private String fio;
     private String companyName;
-    private String adress;
+    private String address;
     private String accountNumber;
 
     private Roles userRole;

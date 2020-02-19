@@ -10,6 +10,6 @@ public class UserSignUpRequestDTO {
     private String password;
     private String fio;
     private String companyName;
-    private String adress;
+    private String address;
     private String accountNumber;
 }

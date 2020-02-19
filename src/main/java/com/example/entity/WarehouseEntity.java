@@ -15,4 +15,6 @@ public class WarehouseEntity {
     private ProductEntity productEntity;
     private long numberOfProduct;
     private Double cost;
+    @ManyToOne
+    private BasketEntity basketEntity;
 }

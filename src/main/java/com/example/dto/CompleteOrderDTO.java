@@ -15,10 +15,10 @@ public class CompleteOrderDTO {
     private long orderId;
     private String fio;
     private String companyNameCustomer;
-    private String adressCustomer;
+    private String addressCustomer;
     private String accountNumberCustomer;
     private String companyNameSeller;
-    private String adressSeller;
+    private String addressSeller;
     private String accountNumberSeller;
 //    private List<WarehouseDTO> basketList;
     private long totalCost;

@@ -13,11 +13,13 @@ public class CompleteOrderEntity {
     private Long id;
     private String fio;
     private String companyNameCustomer;
-    private String adressCustomer;
+    private String addressCustomer;
     private String accountNumberCustomer;
     private String companyNameSeller;
-    private String adressSeller;
+    private String addressSeller;
     private String accountNumberSeller;
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "basket_id", nullable = false)
     private List<WarehouseEntity> basketList;
     private double totalCost;
 }
