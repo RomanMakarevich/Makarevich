@@ -1,0 +1,213 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+  - changeSet:
+      id: 1
+      author: roman_makarevich
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(64)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: fio
+                  type: varchar(512)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: company_name
+                  type: varchar(512)
+              - column:
+                  name: address
+                  type: varchar(512)
+              - column:
+                  name: account_number
+                  type: varchar(512)
+              - column:
+                  name: user_role
+                  type: varchar(16)
+        - createTable:
+            tableName: auth_info
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: varchar(64)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_auth_info_user
+                    references: user(id)
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_name
+                  type: varchar(512)
+              - column:
+                  name: material
+                  type: varchar(512)
+              - column:
+                  name: weight
+                  type: FLOAT
+              - column:
+                  name: cost
+                  type: FLOAT
+        -createTable:
+            tableName: basket
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_basket_user
+                    references: user(id)
+              - column:
+                  name: basket_list
+                  type: ???????????????????????????????????????????????????????????????????
+              - column:
+                  name: complete_order_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_basket_complete_order
+                    references: complete_order(id)
+              - column:
+                  name: total_cost
+                  type: FLOAT
+        -createTable:
+            tableName: complete_order
+            columns:
+              - column:
+                 name: id
+                 type: BIGINT
+                 autoIncrement: true
+                 constraints:
+                 primaryKey: true
+                 nullable: false
+              - column:
+                  name: fio
+                  type: varchar(512)
+              - column:
+                  name: company_name_customer
+                  type: varchar(512)
+              - column:
+                  name: address_customer
+                  type: varchar(512)
+              - column:
+                  name: account_number_customer
+                  type: varchar(512)
+              - column:
+                  name: company_name_seller
+                  type: varchar(512)
+              - column:
+                  name: address_seller
+                  type: varchar(512)
+              - column:
+                  name: account_number_seller
+                  type: varchar(512)
+              - column:
+                  name: basket_list
+                  type: ???????????????????????????????????????????????????????????????????
+              - column:
+                  name: total_cost
+                  type: FLOAT
+        -createTable:
+            tableName: order
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_order_user
+                    references: user(id)
+              - column:
+                  name: basket_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_order_basket
+                    references: basket(id)
+              - column:
+                  name: total_cost
+                  type: FLOAT
+        -createTable:
+            tableName: warehouse
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: priduct_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_warehouse_product
+                    references: user(id)
+              - column:
+                  name: number_of_product
+                  type: BIGINT
+              - column:
+                  name: cost
+                  type: FLOAT
+              - column:
+                  name: basket_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_warehouse_basket
+                    references: basket(id)
