@@ -14,8 +14,9 @@ public class BasketEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity userEntity;
-    private List<WarehouseEntity> basketList;
-    @ManyToOne
+    @OneToMany(mappedBy = "basketEntity")
+    private List<ProductItemEntity> basketList;
+    @OneToOne
     private CompleteOrderEntity completeOrderEntity;
     private double totalCost;
 }

@@ -54,7 +54,7 @@ public class UserController {
 
     @PutMapping(value = "/{userId}/basket/{productId}")
     public void addBasketList(@PathVariable final Long userId,
-                              @RequestBody final WarehouseDTO request) {
+                              @RequestBody final ProductItemDTO request) {
         addBasketListService.addBasketList(userId, request);
 
     }

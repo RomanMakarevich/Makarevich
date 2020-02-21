@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class WarehouseDTO {
+public class ProductItemDTO {
     private ProductDTO productDTO;
     private long numberOfProduct;
 }
