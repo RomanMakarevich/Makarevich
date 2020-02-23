@@ -87,7 +87,7 @@ databaseChangeLog:
               - column:
                   name: cost
                   type: FLOAT
-        -createTable:
+        - createTable:
             tableName: basket
             columns:
               - column:
@@ -121,7 +121,7 @@ databaseChangeLog:
               - column:
                   name: total_cost
                   type: FLOAT
-        -createTable:
+        - createTable:
             tableName: complete_order
             columns:
               - column:
@@ -129,8 +129,8 @@ databaseChangeLog:
                  type: BIGINT
                  autoIncrement: true
                  constraints:
-                 primaryKey: true
-                 nullable: false
+                   primaryKey: true
+                   nullable: false
               - column:
                   name: fio
                   type: varchar(512)
@@ -162,8 +162,8 @@ databaseChangeLog:
               - column:
                   name: total_cost
                   type: FLOAT
-        -createTable:
-            tableName: order
+        - createTable:
+            tableName: order_entity
             columns:
               - column:
                   name: id
@@ -189,7 +189,7 @@ databaseChangeLog:
               - column:
                   name: total_cost
                   type: FLOAT
-        -createTable:
+        - createTable:
             tableName: warehouse
             columns:
               - column:
@@ -205,7 +205,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_warehouse_product
-                    references: user(id)
+                    references: product(id)
               - column:
                   name: number_of_product
                   type: BIGINT
