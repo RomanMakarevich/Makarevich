@@ -87,6 +87,7 @@ databaseChangeLog:
               - column:
                   name: cost
                   type: FLOAT
+
         - createTable:
             tableName: basket
             columns:
@@ -105,19 +106,35 @@ databaseChangeLog:
                     foreignKeyName: fk_basket_user
                     references: user(id)
               - column:
-                  name: warehouse_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_basket_warehouse
-                    references: warehouse(id)
-              - column:
                   name: complete_order_id
                   type: BIGINT
+              - column:
+                  name: total_cost
+                  type: FLOAT
+        - createTable:
+            tableName: order_entity
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_basket_complete_order
-                    references: complete_order(id)
+                    foreignKeyName: fk_order_user
+                    references: user(id)
+              - column:
+                  name: basket_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_order_basket
+                    references: basket(id)
               - column:
                   name: total_cost
                   type: FLOAT
@@ -125,12 +142,12 @@ databaseChangeLog:
             tableName: complete_order
             columns:
               - column:
-                 name: id
-                 type: BIGINT
-                 autoIncrement: true
-                 constraints:
-                   primaryKey: true
-                   nullable: false
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
               - column:
                   name: fio
                   type: varchar(512)
@@ -158,33 +175,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_complete_order_basket
-                    references: basket(id)
-              - column:
-                  name: total_cost
-                  type: FLOAT
-        - createTable:
-            tableName: order_entity
-            columns:
-              - column:
-                  name: id
-                  type: BIGINT
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: user_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_order_user
-                    references: user(id)
-              - column:
-                  name: basket_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_order_basket
                     references: basket(id)
               - column:
                   name: total_cost
