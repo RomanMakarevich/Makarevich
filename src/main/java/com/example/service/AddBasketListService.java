@@ -21,13 +21,14 @@ import java.util.List;
 public class AddBasketListService {
 
     final BasketRepositoty basketRepositoty;
-    BasketEntity basketEntity;
+
     final ProductItemMapper productItemMapper;
     final UserRepository userRepository;
 
     @Transactional
     public void addBasketList(final long userId, final ProductItemDTO request) {
         final  ProductItemEntity productItemEntity = productItemMapper.sourceToDestination(request);
+        BasketEntity basketEntity = new BasketEntity();
         basketEntity.setBasketList(List.of(productItemEntity));
         basketEntity.setUserEntity(userRepository.getOne(userId));
         basketEntity.setTotalCost(basketEntity.
