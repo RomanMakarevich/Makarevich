@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.*;
 
 @Data
-@Entity(name = "authInfo")
+@Entity(name = "auth_info")
 public class AuthInfoEntity {
 
     @Id
