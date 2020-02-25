@@ -41,7 +41,7 @@ public class UserService {
 
     private void saveAuthInfo(final UserSignUpRequestDTO request, final UserEntity savedUser) {
         final AuthInfoEntity authInfoEntity = new AuthInfoEntity();
-        authInfoEntity.setEmail(request.getEmail());
+        authInfoEntity.setLogin(request.getEmail());
         authInfoEntity.setPassword(passwordEncoder.encode(request.getPassword()));
         authInfoEntity.setUserEntity(savedUser);
         authInfoRepository.save(authInfoEntity);

@@ -7,6 +7,7 @@ import com.example.service.AddBasketListService;
 import com.example.service.CreateOrderService;
 import com.example.service.OrderService;
 import com.example.service.UserService;
+import liquibase.pro.packaged.L;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.java.Log;
@@ -46,16 +47,17 @@ public class UserController {
     @PostMapping(value = "/sign-in", consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserSignInResponseDTO singIn(@RequestBody final UserSignInRequestDTO request) {
         authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword()));
 
         return new UserSignInResponseDTO
-                (jwtUtil.generateToken(new User(request.getEmail(), request.getPassword(), List.of(new SimpleGrantedAuthority("USER")))));
+                (jwtUtil.generateToken(new User(request.getLogin(), request.getPassword(), List.of(new SimpleGrantedAuthority("USER")))));
     }
 
     @PutMapping(value = "/{userId}/basket/{productId}")
     public void addBasketList(@PathVariable final Long userId,
-                              @RequestBody final ProductItemDTO request) {
-        addBasketListService.addBasketList(userId, request);
+                              @PathVariable final Long productId,
+                              @RequestParam final Long numberOfProdict) {
+        addBasketListService.addBasketList(userId, productId, numberOfProdict);
 
     }
 

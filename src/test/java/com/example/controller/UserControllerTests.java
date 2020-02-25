@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.hamcrest.Matchers.hasLength;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -16,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc(addFilters = false)
+@TestPropertySource("classpath:application-test.properties")
 public class UserControllerTests {
 
     @Autowired
@@ -47,7 +50,7 @@ public class UserControllerTests {
         mockMvc.perform(post("/user/sign-in")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "  \"email\" : \"vasya@email.com\",\n" +
+                        "  \"login\" : \"vasya@email.com\",\n" +
                         "  \"password\" : \"qwerty\"\n" +
                         "}"))
                 // then
@@ -57,9 +60,10 @@ public class UserControllerTests {
 
     @Test
     public void testAddBasketList() throws Exception {
-        mockMvc.perform(put("/user/1/basket/1")
+        mockMvc.perform(put("/user/1/basket/0")
                 .header("userId", 1)
-                .header("productId", 1))
+                .header("productId", 0)
+                .header("umberOfProdict", 1))
 
                 .andExpect(status().isOk());
     }

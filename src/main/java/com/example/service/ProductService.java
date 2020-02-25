@@ -26,6 +26,7 @@ public class ProductService {
                 .productName("keg")
                 .material("sreel")
                 .weight(7.1)
+                .cost(100.0)
                 .build()));
 
     }
