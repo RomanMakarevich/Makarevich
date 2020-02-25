@@ -81,7 +81,7 @@ public abstract class AbstractControllerTest {
         return authInfo;
     }
 
-    protected ProductEntity createProductEntity(){
+    protected ProductEntity createProductEntity() {
         final ProductEntity productEntity = new ProductEntity();
         productEntity.setId((long) 0);
         productEntity.setProductName("keg");
@@ -89,5 +89,17 @@ public abstract class AbstractControllerTest {
         productEntity.setCost(100);
         productEntity.setWeight(7.1);
         return productEntity;
+    }
+
+    protected UserEntity createUser() {
+        final UserEntity userEntity = new UserEntity();
+        userEntity.setId((long) 0);
+        userEntity.setEmail("vasya@email.com");
+        userEntity.setFio("Пупкин Василий Иванович");
+        userEntity.setCompanyName("Пивной бар №1");
+        userEntity.setAddress("г. Минск, ул. Пивная, 1");
+        userEntity.setAccountNumber("1111 2222 3333 4444");
+        userEntity.setUserRole(USER);
+        return userEntity;
     }
 }

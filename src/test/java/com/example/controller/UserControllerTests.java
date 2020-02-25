@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.entity.BasketEntity;
 import com.example.entity.ProductEntity;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -66,8 +67,10 @@ public class UserControllerTests extends AbstractControllerTest{
 
     @Test
     public void testAddBasketList() throws Exception {
-        final ProductEntity productEntity = new ProductEntity();
-        willReturn(Optional.of(productEntity)).given(productRepository).getOne((long) 0);
+        final BasketEntity basketEntity = new BasketEntity();
+        willReturn(Optional.of(createProductEntity())).given(productRepository).getOne((long) 0);
+        willReturn(Optional.of(createUser())).given(userRepository).getOne((long) 1);
+        willReturn(status().isOk()).given(basketRepositoty).save(basketEntity);
         mockMvc.perform(put("/user/1/basket/0")
                 .header("userId", 1)
                 .header("productId", 0)
