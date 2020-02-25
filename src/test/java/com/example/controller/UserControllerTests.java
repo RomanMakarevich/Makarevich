@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import com.example.entity.ProductEntity;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.junit.jupiter.api.Test;
@@ -9,6 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Optional;
+
+import static org.mockito.BDDMockito.willReturn;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.hamcrest.Matchers.hasLength;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -19,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc(addFilters = false)
 @TestPropertySource("classpath:application-test.properties")
-public class UserControllerTests {
+public class UserControllerTests extends AbstractControllerTest{
 
     @Autowired
     private MockMvc mockMvc;
@@ -60,6 +66,8 @@ public class UserControllerTests {
 
     @Test
     public void testAddBasketList() throws Exception {
+        final ProductEntity productEntity = new ProductEntity();
+        willReturn(Optional.of(productEntity)).given(productRepository).getOne((long) 0);
         mockMvc.perform(put("/user/1/basket/0")
                 .header("userId", 1)
                 .header("productId", 0)

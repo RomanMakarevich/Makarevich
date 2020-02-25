@@ -15,7 +15,8 @@ public class WarehouseController {
     private final WarehouseService warehouseService;
 
     @PutMapping (value = "/products/{productId}")
-    private  void  addProduct(@RequestBody final WarehouseDTO request){
-    warehouseService.addProduct(request);
+    private  void  addProduct(@PathVariable final Long productId,
+                              @RequestParam final Long numberOfProdict){
+    warehouseService.addProduct(productId, numberOfProdict);
     }
 }

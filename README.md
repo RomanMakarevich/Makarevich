@@ -75,7 +75,7 @@ Response: 200 OK
        "productName" : "keg",
        "material" : "sreel",
        "weight" : 7.1,
-       "numberOfKeg" : 1000   
+       "numberOfProduct" : 1000   
 }
 
 
@@ -84,7 +84,7 @@ MRPF-4 Как "Клиент" я хочу добавить товар в корз
 
 Request:
 
-POST /product-factory-app/user/${userId}/basket/${productId}
+POST /product-factory-app/user/{userId}/basket/{productId}
 
 
 Response: 200 OK
@@ -107,7 +107,7 @@ Response: 200 OK
     "adress" : "г. Минск, ул. Пивная, 1",
     "accountNumber" : "1111 2222 3333 4444",
     "product" : "keg", 
-    "numberOfKegel": 100,
+    "numberOfProduct": 100,
     "totalCost" : 1000 
 
 }
@@ -127,7 +127,7 @@ PUT /product-factory-app/products/${productId}
       "productName" : "keg",
       "material" : "sreel",
       "weight" : 7.1,
-      "numberOfKeg" : 1000
+      "cost" : 100
       
   }
 
@@ -150,7 +150,7 @@ Response: 200 OK
       "adress" : "г. Минск, ул. Пивная, 1",
       "accountNumber" : "1111 2222 3333 4444",
       "product" : "keg", 
-      "numberOfKegel": 100,
+      "numberOfProduct": 100,
       "totalCost" : 1000 
       
   }
@@ -183,9 +183,36 @@ Response: 200 OK
       },
       
       "product" : "keg", 
-      "numberOfKeg": 100,
+      "numberOfProduct": 100,
       "totalCost" : 1000  
          
   }
   
 ]
+
+
+MRPF-8 Как работник я хочу завести новую позицию товара.
+
+Request:
+
+POST /product-factory-app/orders
+
+{
+  
+      "productName" : "bank",
+      "material" : "sreel",
+      "weight" : 0.3,
+      "cost" : 5.0
+      
+}
+
+Response: 201 CREATED
+
+
+MRPF-9 Как клиент я хочу удалить позицыю из корзины.
+
+Request:
+
+PUT /product-factory-app/user/{userId}/basket/{productId}
+
+Response: 200 OK

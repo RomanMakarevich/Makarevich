@@ -18,15 +18,12 @@ public class WarehouseService {
 
     WarehouseRepository warehouseRepository;
     WarehouseMapper warehouseMapper;
-    WarehouseEntity warehouseEntity;
 
     @Transactional
-    public void addProduct(final WarehouseDTO request) {
-        warehouseEntity = warehouseMapper.sourceToDestination(request);
-        warehouseRepository.getOne(request.getNumberOfProduct())
+    public void addProduct(final long productId, final long numberOfProduct) {
+        warehouseRepository.getOne(productId)
                 .setNumberOfProduct(warehouseRepository.
-                        getOne(warehouseEntity.
-                                getId()).getNumberOfProduct() + warehouseEntity.getNumberOfProduct());
+                        getOne(productId).getNumberOfProduct() + numberOfProduct);
     }
 
     public final WarehouseDTO getProduct(final long productId) {

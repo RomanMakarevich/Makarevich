@@ -3,6 +3,7 @@ package com.example.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @Entity(name = "waryhouse")
@@ -14,7 +15,7 @@ public class WarehouseEntity {
     @JoinColumn(name = "productName", nullable = false)
     private ProductEntity productEntity;
     private long numberOfProduct;
-    private Double cost;
+    private double cost;
     @ManyToOne
     private BasketEntity basketEntity;
 }

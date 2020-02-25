@@ -19,10 +19,12 @@ public class WarehouseControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+
     @Test
     public void addProduct() throws Exception {
         mockMvc.perform(put("/product-factory-app/products/1")
-        .header("productId", 1))
+        .header("productId", 1)
+        .header("numberOfProduct", 2))
 
         .andExpect(status().isOk())
         ;

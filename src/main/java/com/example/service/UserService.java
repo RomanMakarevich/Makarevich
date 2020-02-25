@@ -9,13 +9,14 @@ import com.example.reposiroty.AuthInfoRepository;
 import com.example.reposiroty.UserRepository;
 import com.example.security.Roles;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 
 public class UserService {
 
