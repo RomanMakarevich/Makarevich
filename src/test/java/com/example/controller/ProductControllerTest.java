@@ -9,7 +9,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.BDDMockito.willReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,7 +25,7 @@ public class ProductControllerTest extends AbstractControllerTest {
 
     @Test
     public void testProduct() throws Exception {
-        willReturn(List.of(createProductEntity())).given(productRepository).findAll();
+        willReturn(List.of(createProduct())).given(productRepository).findAll();
         mockMvc.perform(get("/product-factory-app/products"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +

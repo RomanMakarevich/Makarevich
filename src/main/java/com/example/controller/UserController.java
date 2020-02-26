@@ -4,10 +4,8 @@ import com.example.dto.*;
 import com.example.ecxeption.SuchUserAlreadyExistException;
 import com.example.security.JwtUtil;
 import com.example.service.AddBasketListService;
-import com.example.service.CreateOrderService;
 import com.example.service.OrderService;
 import com.example.service.UserService;
-import liquibase.pro.packaged.L;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.java.Log;
@@ -56,8 +54,8 @@ public class UserController {
     @PutMapping(value = "/{userId}/basket/{productId}")
     public void addBasketList(@PathVariable final Long userId,
                               @PathVariable final Long productId,
-                              @RequestParam final Long numberOfProdict) {
-        addBasketListService.addBasketList(userId, productId, numberOfProdict);
+                              @RequestParam final Long numberOfProduct) {
+        addBasketListService.addBasketList(userId, productId, numberOfProduct);
 
     }
 

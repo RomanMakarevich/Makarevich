@@ -1,9 +1,6 @@
 package com.example.controller;
 
 import com.example.entity.BasketEntity;
-import com.example.entity.ProductEntity;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.junit.jupiter.api.Test;
@@ -67,10 +64,10 @@ public class UserControllerTests extends AbstractControllerTest{
 
     @Test
     public void testAddBasketList() throws Exception {
-        final BasketEntity basketEntity = new BasketEntity();
-        willReturn(Optional.of(createProductEntity())).given(productRepository).getOne((long) 0);
+
+        willReturn(Optional.of(createProduct())).given(productRepository).getOne((long) 0);
         willReturn(Optional.of(createUser())).given(userRepository).getOne((long) 1);
-        willReturn(status().isOk()).given(basketRepositoty).save(basketEntity);
+        willReturn(status().isOk()).given(basketRepositoty).save(createBasket());
         mockMvc.perform(put("/user/1/basket/0")
                 .header("userId", 1)
                 .header("productId", 0)
@@ -81,6 +78,10 @@ public class UserControllerTests extends AbstractControllerTest{
 
     @Test
     public void testCreateOrder() throws Exception {
+
+        willReturn(Optional.of(createBasket())).given(basketRepositoty).getOne((long)1);
+//        willReturn().given(basketRepositoty).deleteById((long)1);
+        willReturn(status().isOk()).given(orderRepository).save(createOrder());
         mockMvc.perform(post("/user/1/basket")
                 .header("userId", 1))
 

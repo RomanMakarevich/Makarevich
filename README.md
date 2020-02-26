@@ -138,7 +138,7 @@ MRPF-7 Как "Работник" я хочу просмотреть список
 
 Request:
 
-GET /product-factory-app/orders//{orderId}
+GET /product-factory-app/orders/
 
 Response: 200 OK
 

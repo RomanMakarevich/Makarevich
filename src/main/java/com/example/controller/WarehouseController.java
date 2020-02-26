@@ -16,7 +16,7 @@ public class WarehouseController {
 
     @PutMapping (value = "/products/{productId}")
     private  void  addProduct(@PathVariable final Long productId,
-                              @RequestParam final Long numberOfProdict){
-    warehouseService.addProduct(productId, numberOfProdict);
+                              @RequestParam final Long numberOfProduct){
+    warehouseService.addProduct(productId, numberOfProduct);
     }
 }

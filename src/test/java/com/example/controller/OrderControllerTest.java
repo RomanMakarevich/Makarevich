@@ -7,6 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+import java.util.Optional;
+
+import static org.mockito.BDDMockito.willReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -14,13 +18,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc(addFilters = false)
 @TestPropertySource("classpath:application-test.properties")
-public class OrderControllerTest {
+public class OrderControllerTest extends AbstractControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void testOrder() throws Exception {
+        willReturn(List.of(createOrder())).given(orderRepository).findAll();
         mockMvc.perform(get("/product-factory-app/orders"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
@@ -32,7 +37,7 @@ public class OrderControllerTest {
                         " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
                         " \"productName\" : \"keg\", \n" +
                         " \"numberOfKeg\": 100, \n" +
-                        " \"totalCost\" : 1000 \n" +
+                        " \"totalCost\" : 10000.00 \n" +
                         "  }\n" +
                         "]"));
 

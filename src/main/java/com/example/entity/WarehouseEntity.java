@@ -14,7 +14,7 @@ public class WarehouseEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "productName", nullable = false)
     private ProductEntity productEntity;
-    private long numberOfProduct;
+    private Long numberOfProduct;
     private double cost;
     @ManyToOne
     private BasketEntity basketEntity;

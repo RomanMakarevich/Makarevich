@@ -14,7 +14,7 @@ public class ProductItemEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity productEntity;
-    private long numberOfProduct;
+    private Long numberOfProduct;
     private double cost;
     @ManyToOne
     @JoinColumn(name = "basket_id", nullable = false)

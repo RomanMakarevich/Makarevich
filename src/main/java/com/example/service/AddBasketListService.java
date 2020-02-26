@@ -30,7 +30,7 @@ public class AddBasketListService {
     final UserRepository userRepository;
 
     @Transactional
-    public void addBasketList(final long userId, final long productID, final long numberOfProduct) {
+    public void addBasketList(final long userId, final long productID, final Long numberOfProduct) {
 
         final ProductItemEntity productItemEntity = new ProductItemEntity();
         productItemEntity.setProductEntity(productRepository.getOne(productID));

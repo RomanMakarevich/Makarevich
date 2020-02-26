@@ -8,13 +8,16 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 
+import java.util.Optional;
+
+import static org.mockito.BDDMockito.willReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc(addFilters = false)
 @TestPropertySource("classpath:application-test.properties")
-public class WarehouseControllerTest {
+public class WarehouseControllerTest extends AbstractControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -22,11 +25,12 @@ public class WarehouseControllerTest {
 
     @Test
     public void addProduct() throws Exception {
+        willReturn(Optional.of(createWarehouse())).given(warehouseRepository).getOne((long) 1);
         mockMvc.perform(put("/product-factory-app/products/1")
-        .header("productId", 1)
-        .header("numberOfProduct", 2))
+                .header("productId", 1)
+                .header("numberOfProduct", 20))
 
-        .andExpect(status().isOk())
+                .andExpect(status().isOk())
         ;
     }
 }

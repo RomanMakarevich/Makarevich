@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.converter.OrderConverter;
 import com.example.dto.OrderDTO;
 import com.example.entity.BasketEntity;
 import com.example.entity.OrderEntity;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -21,9 +23,13 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
     private final BasketRepositoty basketRepositoty;
+    private final OrderConverter orderConverter;
 
+    public List<OrderDTO> getList(){
+        return orderRepository.findAll().stream().map(orderMapper::destinationToSource).collect(Collectors.toList());
+    }
 
-    public OrderDTO getList(final long orderid) {
+    public OrderDTO getOrder(final long orderid) {
         final OrderEntity orderEntity = orderRepository.getOne(orderid);
 
         return orderMapper.destinationToSource(orderEntity);
@@ -31,6 +37,7 @@ public class OrderService {
 
     @Transactional
     public OrderDTO createOrder(final long userId) {
+//        ?????????????????????????????????????????????????????????????????????????????????
         final BasketEntity basketEntity = basketRepositoty.getOne(userId);
         final OrderEntity orderEntity = new OrderEntity();
 
@@ -40,6 +47,7 @@ public class OrderService {
 
         basketRepositoty.deleteById(userId);
         orderRepository.save(orderEntity);
-        return orderMapper.destinationToSource(orderEntity);
+
+        return orderConverter.entityToDTO(orderEntity);
     }
 }

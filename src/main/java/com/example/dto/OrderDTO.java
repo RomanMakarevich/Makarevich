@@ -2,6 +2,9 @@ package com.example.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -11,7 +14,6 @@ public class OrderDTO {
     private String companyName;
     private String address;
     private String accountNumber;
-    private String productName;
-    private long numberOfProduct;
-    private long totalCost;
+    private List<ProductItemDTO> basketList;
+    private double totalCost;
 }

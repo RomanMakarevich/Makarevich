@@ -1,13 +1,10 @@
 package com.example.controller;
 
+import com.example.dto.OrderDTO;
 import com.example.dto.UserSignInResponseDTO;
-import com.example.entity.AuthInfoEntity;
-import com.example.entity.ProductEntity;
-import com.example.entity.UserEntity;
-import com.example.reposiroty.AuthInfoRepository;
-import com.example.reposiroty.BasketRepositoty;
-import com.example.reposiroty.ProductRepository;
-import com.example.reposiroty.UserRepository;
+import com.example.entity.*;
+import com.example.mapper.OrderMapper;
+import com.example.reposiroty.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.example.security.Roles.USER;
@@ -39,6 +37,8 @@ public abstract class AbstractControllerTest {
     @Autowired
     protected ObjectMapper objectMapper;
     @Autowired
+    protected OrderMapper orderMapper;
+    @Autowired
     protected PasswordEncoder passwordEncoder;
 
     @MockBean
@@ -49,6 +49,10 @@ public abstract class AbstractControllerTest {
     protected BasketRepositoty basketRepositoty;
     @MockBean
     protected ProductRepository productRepository;
+    @MockBean
+    protected OrderRepository orderRepository;
+    @MockBean
+    protected  WarehouseRepository warehouseRepository;
 
     protected String signInAsStudent() throws Exception {
         final AuthInfoEntity authInfo = createAuthInfo();
@@ -81,7 +85,7 @@ public abstract class AbstractControllerTest {
         return authInfo;
     }
 
-    protected ProductEntity createProductEntity() {
+    protected ProductEntity createProduct() {
         final ProductEntity productEntity = new ProductEntity();
         productEntity.setId((long) 0);
         productEntity.setProductName("keg");
@@ -101,5 +105,47 @@ public abstract class AbstractControllerTest {
         userEntity.setAccountNumber("1111 2222 3333 4444");
         userEntity.setUserRole(USER);
         return userEntity;
+    }
+
+    protected BasketEntity createBasket() {
+        final BasketEntity basketEntity = new BasketEntity();
+        basketEntity.setId((long) 1);
+        basketEntity.setBasketList(List.of(createProductItem()));
+        basketEntity.setUserEntity(createUser());
+        basketEntity.setTotalCost(basketEntity.
+                getTotalCost() + basketEntity.
+                getBasketList().
+                stream().
+                mapToDouble(ProductItemEntity::getCost).
+                sum());
+        return basketEntity;
+    }
+
+    protected ProductItemEntity createProductItem() {
+        final ProductItemEntity productItemEntity = new ProductItemEntity();
+        productItemEntity.setNumberOfProduct((long) 100);
+        productItemEntity.setProductEntity(createProduct());
+        productItemEntity.setCost(productItemEntity.getProductEntity().getCost() * productItemEntity.getNumberOfProduct());
+
+        return productItemEntity;
+    }
+
+    protected OrderEntity createOrder() {
+        final OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setId((long) 1);
+        orderEntity.setUserEntity(createUser());
+        orderEntity.setBasketEntity(createBasket());
+        orderEntity.setTotalCost(orderEntity.getBasketEntity().getTotalCost());
+
+        return orderEntity;
+    }
+
+    protected WarehouseEntity createWarehouse(){
+        final WarehouseEntity warehouseEntity = new WarehouseEntity();
+        warehouseEntity.setNumberOfProduct((long)1000);
+        warehouseEntity.setId((long)1);
+        warehouseEntity.setProductEntity(createProduct());
+
+        return warehouseEntity;
     }
 }

@@ -18,8 +18,8 @@ public class OrderController {
     private final OrderService orderService;
 
 
-    @GetMapping(value = "/orders/{orderId}")
-    public OrderDTO getList(final long orderId) {
-        return orderService.getList(orderId);
+    @GetMapping(value = "/orders")
+    public List<OrderDTO> getList() {
+        return orderService.getList();
     }
 }
