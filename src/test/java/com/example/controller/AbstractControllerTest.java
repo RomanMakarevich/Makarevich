@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import com.example.dto.OrderDTO;
 import com.example.dto.UserSignInResponseDTO;
 import com.example.entity.*;
 import com.example.mapper.OrderMapper;
@@ -53,6 +52,8 @@ public abstract class AbstractControllerTest {
     protected OrderRepository orderRepository;
     @MockBean
     protected  WarehouseRepository warehouseRepository;
+    @MockBean
+    protected  CompleteOrderRepository completeOrderRepository;
 
     protected String signInAsStudent() throws Exception {
         final AuthInfoEntity authInfo = createAuthInfo();
@@ -147,5 +148,21 @@ public abstract class AbstractControllerTest {
         warehouseEntity.setProductEntity(createProduct());
 
         return warehouseEntity;
+    }
+
+    protected CompleteOrderEntity createCompleteOrder(){
+        final CompleteOrderEntity completeOrderEntity = new CompleteOrderEntity();
+        completeOrderEntity.setId((long)1);
+        completeOrderEntity.setFio("Пупкин Василий Иванович");
+        completeOrderEntity.setCompanyNameCustomer("Пивной бар №1");
+        completeOrderEntity.setAddressCustomer("г. Минск, ул. Пивная, 1");
+        completeOrderEntity.setAccountNumberCustomer("1111 2222 3333 4444");
+        completeOrderEntity.setCompanyNameSeller("Завод тары для пива");
+        completeOrderEntity.setAddressSeller("г. Минск, ул. Предприятий связанных с пивом");
+        completeOrderEntity.setAddressSeller("2222 6666 4444 8888");
+        completeOrderEntity.setBasketEntity(createBasket());
+        completeOrderEntity.setTotalCost((long)10000);
+
+        return completeOrderEntity;
     }
 }

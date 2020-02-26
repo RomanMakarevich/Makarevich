@@ -20,7 +20,7 @@ public class CompleteOrderService {
     private final CompleteOrderRepository completeOrderRepository;
 
     @Transactional
-    public CompleteOrderDTO completeOrder(final long orderId) {
+    public void completeOrder(final Long orderId) {
 
         final CompleteOrderEntity completeOrderEntity = new CompleteOrderEntity();
 
@@ -32,13 +32,12 @@ public class CompleteOrderService {
         completeOrderEntity.setCompanyNameSeller("Завод тары для пива");
         completeOrderEntity.setAddressSeller("г. Минск, ул. Предприятий связанных с пивом");
         completeOrderEntity.setAccountNumberSeller("2222 6666 4444 8888");
-//        completeOrderEntity.setBasketEntity(orderEntity.getBasketEntity());
+        completeOrderEntity.setBasketEntity(orderEntity.getBasketEntity());
         completeOrderEntity.setTotalCost(orderEntity.getTotalCost());
 
         orderRepository.deleteById(orderId);
         completeOrderRepository.save(completeOrderEntity);
 
-        return completeOrderMapper.destinationToSource(completeOrderEntity);
     }
 
     public CompleteOrderDTO getCompleteOrder(final long orderId) {

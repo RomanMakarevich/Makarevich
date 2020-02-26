@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 public class CompleteOrderController {
     private final CompleteOrderService completeOrderService;
 
-    @PostMapping (value = "/orders/{orderId}")
-    public CompleteOrderDTO completeOrder(@PathVariable final long orderId) throws Exception{
-        return completeOrderService.completeOrder(orderId);
+    @PostMapping(value = "/orders/{orderId}")
+    public void completeOrder(@PathVariable final Long orderId) throws Exception {
+        completeOrderService.completeOrder(orderId);
     }
 }

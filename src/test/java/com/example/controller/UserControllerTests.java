@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.willReturn;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.hamcrest.Matchers.hasLength;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -80,7 +81,7 @@ public class UserControllerTests extends AbstractControllerTest{
     public void testCreateOrder() throws Exception {
 
         willReturn(Optional.of(createBasket())).given(basketRepositoty).getOne((long)1);
-//        willReturn().given(basketRepositoty).deleteById((long)1);
+        doNothing().when(basketRepositoty).deleteById((long)1);
         willReturn(status().isOk()).given(orderRepository).save(createOrder());
         mockMvc.perform(post("/user/1/basket")
                 .header("userId", 1))
