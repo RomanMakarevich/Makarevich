@@ -5,10 +5,8 @@ import com.example.dto.OrderDTO;
 import com.example.entity.BasketEntity;
 import com.example.entity.OrderEntity;
 import com.example.mapper.OrderMapper;
-import com.example.reposiroty.BasketRepositoty;
+import com.example.reposiroty.BasketRepository;
 import com.example.reposiroty.OrderRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,30 +20,30 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
-    private final BasketRepositoty basketRepositoty;
+    private final BasketRepository basketRepository;
     private final OrderConverter orderConverter;
 
     public List<OrderDTO> getList(){
         return orderRepository.findAll().stream().map(orderMapper::destinationToSource).collect(Collectors.toList());
     }
 
-    public OrderDTO getOrder(final long orderid) {
-        final OrderEntity orderEntity = orderRepository.getOne(orderid);
+    public OrderDTO getOrder(final long orderId) {
+        final OrderEntity orderEntity = orderRepository.getOne(orderId);
 
         return orderMapper.destinationToSource(orderEntity);
     }
 
     @Transactional
-    public OrderDTO createOrder(final long userId) {
+    public OrderDTO createOrder(final Long userId) {
 //        ?????????????????????????????????????????????????????????????????????????????????
-        final BasketEntity basketEntity = basketRepositoty.getOne(userId);
+        final BasketEntity basketEntity = basketRepository.findByUserId(userId).get();
         final OrderEntity orderEntity = new OrderEntity();
 
         orderEntity.setBasketEntity(basketEntity);
         orderEntity.setUserEntity(basketEntity.getUserEntity());
         orderEntity.setTotalCost(basketEntity.getTotalCost());
 
-        basketRepositoty.deleteById(userId);
+        basketRepository.deleteById(userId);
         orderRepository.save(orderEntity);
 
         return orderConverter.entityToDTO(orderEntity);

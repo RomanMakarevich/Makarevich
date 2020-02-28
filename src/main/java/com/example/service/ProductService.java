@@ -22,9 +22,9 @@ public class ProductService {
     @Transactional
     public void init() {
         productRepository.save(productMapper.sourceToDestination(ProductDTO.builder()
-                .productId(1)
+                .productId(0)
                 .productName("keg")
-                .material("sreel")
+                .material("steel")
                 .weight(7.1)
                 .cost(100.0)
                 .build()));
@@ -32,6 +32,7 @@ public class ProductService {
     }
 
     public List<ProductDTO> getList() {
+        init();
         return productRepository.findAll().stream().map(productMapper::destinationToSource).collect(Collectors.toList());
     }
 

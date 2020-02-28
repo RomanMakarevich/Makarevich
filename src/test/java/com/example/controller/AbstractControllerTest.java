@@ -1,8 +1,10 @@
 package com.example.controller;
 
+import com.example.dto.ProductDTO;
 import com.example.dto.UserSignInResponseDTO;
 import com.example.entity.*;
 import com.example.mapper.OrderMapper;
+import com.example.mapper.ProductMapper;
 import com.example.reposiroty.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,8 @@ public abstract class AbstractControllerTest {
     @Autowired
     protected OrderMapper orderMapper;
     @Autowired
+    private ProductMapper productMapper;
+    @Autowired
     protected PasswordEncoder passwordEncoder;
 
     @MockBean
@@ -45,7 +49,7 @@ public abstract class AbstractControllerTest {
     @MockBean
     protected UserRepository userRepository;
     @MockBean
-    protected BasketRepositoty basketRepositoty;
+    protected BasketRepository basketRepository;
     @MockBean
     protected ProductRepository productRepository;
     @MockBean
@@ -87,12 +91,14 @@ public abstract class AbstractControllerTest {
     }
 
     protected ProductEntity createProduct() {
-        final ProductEntity productEntity = new ProductEntity();
-        productEntity.setId((long) 0);
-        productEntity.setProductName("keg");
-        productEntity.setMaterial("sreel");
-        productEntity.setCost(100);
-        productEntity.setWeight(7.1);
+        final ProductEntity productEntity = productMapper.sourceToDestination(ProductDTO.builder()
+                .productId(0)
+                .productName("keg")
+                .material("sreel")
+                .weight(7.1)
+                .cost(100.0)
+                .build());
+
         return productEntity;
     }
 

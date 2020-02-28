@@ -73,7 +73,7 @@ Response: 200 OK
 {
 
        "productName" : "keg",
-       "material" : "sreel",
+       "material" : "steel",
        "weight" : 7.1,
        "numberOfProduct" : 1000   
 }
@@ -125,7 +125,7 @@ PUT /product-factory-app/products/${productId}
   {
   
       "productName" : "keg",
-      "material" : "sreel",
+      "material" : "steel",
       "weight" : 7.1,
       "cost" : 100
       
@@ -200,7 +200,7 @@ POST /product-factory-app/orders
 {
   
       "productName" : "bank",
-      "material" : "sreel",
+      "material" : "steel",
       "weight" : 0.3,
       "cost" : 5.0
       

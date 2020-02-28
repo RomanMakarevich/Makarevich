@@ -18,6 +18,7 @@ public class BasketEntity {
     @OneToMany(mappedBy = "basketEntity")
     private List<ProductItemEntity> basketList;
     @OneToOne
+    @JoinColumn(name = "complete_order_id", nullable = false)
     private CompleteOrderEntity completeOrderEntity;
     private double totalCost;
 }

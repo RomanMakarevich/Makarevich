@@ -53,8 +53,8 @@ public class UserController {
 
     @PutMapping(value = "/{userId}/basket/{productId}")
     public void addBasketList(@PathVariable final Long userId,
-                              @PathVariable final Long productId,
-                              @RequestParam final Long numberOfProduct) {
+                              @RequestParam("productId") final Long productId,
+                              @RequestParam("numberOfProduct") final Long numberOfProduct) {
         addBasketListService.addBasketList(userId, productId, numberOfProduct);
 
     }

@@ -1,8 +1,7 @@
 package com.example.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -11,25 +10,21 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
 
-import static org.mockito.BDDMockito.willReturn;
-import static org.mockito.Mockito.doNothing;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.hamcrest.Matchers.hasLength;
+import static org.mockito.BDDMockito.willReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc(addFilters = false)
 @TestPropertySource("classpath:application-test.properties")
-public class UserControllerTests extends AbstractControllerTest{
+public class UnitTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testUserSignUpIsCreated() throws Exception {
+    public void unitTest() throws Exception {
         // given
         // when
         mockMvc.perform(post("/user/sign-up")
@@ -45,12 +40,7 @@ public class UserControllerTests extends AbstractControllerTest{
                 // then
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("token", hasLength(144)));
-    }
 
-    @Test
-    public void testUserSignInIsOk() throws Exception {
-        // given
-        // when
         mockMvc.perform(post("/user/sign-in")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
@@ -60,28 +50,26 @@ public class UserControllerTests extends AbstractControllerTest{
                 // then
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("token", hasLength(144)));
-    }
 
-    @Test
-    public void testAddBasketList() throws Exception {
+        mockMvc.perform(get("/product-factory-app/products"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[\n" +
+                        "  {\n" +
+                        " \"productId\" : 0, \n" +
+                        " \"productName\" : \"keg\", \n" +
+                        " \"material\" : sreel, \n" +
+                        " \"weight\" : 7.1, \n" +
+                        " \"cost\" : 100.0 \n" +
+                        "  }\n" +
+                        "]"));
 
-        willReturn(Optional.of(createProduct())).given(productRepository).getOne((long) 0);
-        willReturn(Optional.of(createUser())).given(userRepository).getOne((long) 1);
-        willReturn(status().isOk()).given(basketRepository).save(createBasket());
         mockMvc.perform(put("/user/1/basket/0")
                 .header("userId", 1)
-                .param("productId", "0")
-                .param("numberOfProduct", "1"))
+                .param("productId", "1")
+                .param("numberOfProduct", "100"))
 
                 .andExpect(status().isOk());
-    }
 
-    @Test
-    public void testCreateOrder() throws Exception {
-
-        willReturn(Optional.of(createBasket())).given(basketRepository).getOne((long)1);
-        doNothing().when(basketRepository).deleteById((long)1);
-        willReturn(status().isOk()).given(orderRepository).save(createOrder());
         mockMvc.perform(post("/user/1/basket")
                 .header("userId", 1))
 
@@ -95,10 +83,9 @@ public class UserControllerTests extends AbstractControllerTest{
                         " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
                         " \"productName\" : \"keg\", \n" +
                         " \"numberOfKeg\": 100, \n" +
-                        " \"totalCost\" : 1000 \n" +
+                        " \"totalCost\" : 10000.00 \n" +
                         "  }\n" +
                         "]"));
-
     }
 
 }
