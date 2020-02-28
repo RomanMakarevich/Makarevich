@@ -23,15 +23,15 @@ public class CompleteOrderControllerTest extends AbstractControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    public void completeOrder() throws Exception {
-        willReturn(List.of(createOrder())).given(orderRepository).findAll();
-        doNothing().when(orderRepository).deleteById((long)1);
-        willReturn(status().isOk()).given(completeOrderRepository).save(createCompleteOrder());
-
-        mockMvc.perform(post("/product-factory-app/orders/1")
-                .header("orderId", 1))
-
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    public void completeOrder() throws Exception {
+//        willReturn(List.of(createOrder())).given(orderRepository).findAll();
+//        doNothing().when(orderRepository).deleteById((long)1);
+//        willReturn(status().isOk()).given(completeOrderRepository).save(createCompleteOrder());
+//
+//        mockMvc.perform(post("/product-factory-app/orders/1")
+//                .header("orderId", 1))
+//
+//                .andExpect(status().isOk());
+//    }
 }

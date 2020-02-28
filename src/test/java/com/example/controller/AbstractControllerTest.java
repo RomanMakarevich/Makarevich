@@ -137,15 +137,15 @@ public abstract class AbstractControllerTest {
         return productItemEntity;
     }
 
-    protected OrderEntity createOrder() {
-        final OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setId((long) 1);
-        orderEntity.setUserEntity(createUser());
-        orderEntity.setBasketEntity(createBasket());
-        orderEntity.setTotalCost(orderEntity.getBasketEntity().getTotalCost());
-
-        return orderEntity;
-    }
+//    protected OrderEntity createOrder() {
+//        final OrderEntity orderEntity = new OrderEntity();
+//        orderEntity.setId((long) 1);
+//        orderEntity.setUserEntity(createUser());
+//        orderEntity.setBasketEntity(createBasket());
+//        orderEntity.setTotalCost(orderEntity.getBasketEntity().getTotalCost());
+//
+//        return orderEntity;
+//    }
 
     protected WarehouseEntity createWarehouse(){
         final WarehouseEntity warehouseEntity = new WarehouseEntity();

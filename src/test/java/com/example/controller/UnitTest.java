@@ -8,10 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Optional;
-
 import static org.hamcrest.Matchers.hasLength;
-import static org.mockito.BDDMockito.willReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -57,7 +54,7 @@ public class UnitTest {
                         "  {\n" +
                         " \"productId\" : 0, \n" +
                         " \"productName\" : \"keg\", \n" +
-                        " \"material\" : sreel, \n" +
+                        " \"material\" : steel, \n" +
                         " \"weight\" : 7.1, \n" +
                         " \"cost\" : 100.0 \n" +
                         "  }\n" +
@@ -65,7 +62,7 @@ public class UnitTest {
 
         mockMvc.perform(put("/user/1/basket/0")
                 .header("userId", 1)
-                .param("productId", "1")
+                .param("productId", "0")
                 .param("numberOfProduct", "100"))
 
                 .andExpect(status().isOk());

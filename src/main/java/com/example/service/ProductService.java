@@ -32,7 +32,6 @@ public class ProductService {
     }
 
     public List<ProductDTO> getList() {
-        init();
         return productRepository.findAll().stream().map(productMapper::destinationToSource).collect(Collectors.toList());
     }
 

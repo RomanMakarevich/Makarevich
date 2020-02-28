@@ -23,7 +23,6 @@ public class OrderConverter {
                 .address(orderEntity.getUserEntity().getAddress())
                 .accountNumber(orderEntity.getUserEntity().getAccountNumber())
                 .basketList(orderEntity
-                        .getBasketEntity()
                         .getBasketList()
                         .stream()
                         .map(productItemMapper::destinationToSource)
