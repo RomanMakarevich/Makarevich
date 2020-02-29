@@ -25,9 +25,9 @@ public class WarehouseControllerTest extends AbstractControllerTest {
 
     @Test
     public void addProduct() throws Exception {
-        willReturn(Optional.of(createWarehouse())).given(warehouseRepository).getOne((long) 0);
-        mockMvc.perform(put("/product-factory-app/products/0")
-                .header("productId", 0)
+//        willReturn(Optional.of(createWarehouse())).given(warehouseRepository).getOne((long) 1);
+        mockMvc.perform(put("/product-factory-app/products/1")
+                .header("productId", 1)
                 .param("numberOfProduct", "20"))
 
                 .andExpect(status().isOk())

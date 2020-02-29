@@ -35,7 +35,20 @@ public class OrderControllerTest extends AbstractControllerTest {
                         " \"companyName\" : \"Пивной бар №1\", \n" +
                         " \"address\" : \"г. Минск, ул. Пивная, 1\", \n" +
                         " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
-                        " \"basketList\" : [{\"productDTO\":null,\"numberOfProduct\":100}], \n" +
+                        " \"basketList\" : \n" +
+                        "[\n" +
+                        "{\n" +
+                        " \"productDTO\": \n" +
+                        "{\n" +
+                        " \"productId\":0, \n" +
+                        " \"productName\":\"keg\", \n" +
+                        " \"material\":\"steel\", \n" +
+                        " \"weight\":7.1, \n" +
+                        " \"cost\":100.0 \n" +
+                        "},\n" +
+                        " \"numberOfProduct\":100 \n" +
+                        "}\n" +
+                        "],\n" +
                         " \"totalCost\" : 10000.00 \n" +
                         "  }\n" +
                         "]"));

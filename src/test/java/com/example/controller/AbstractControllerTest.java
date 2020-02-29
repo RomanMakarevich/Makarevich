@@ -92,6 +92,7 @@ public abstract class AbstractControllerTest {
 
     protected ProductEntity createProduct() {
         final ProductEntity productEntity = productMapper.sourceToDestination(ProductDTO.builder()
+                .productId(1)
                 .productName("keg")
                 .material("steel")
                 .weight(7.1)

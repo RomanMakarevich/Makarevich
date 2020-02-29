@@ -64,14 +64,16 @@ public class UserControllerTests extends AbstractControllerTest{
 
     @Test
     public void testAddBasketList() throws Exception {
-
-        willReturn(Optional.of(createProduct())).given(productRepository).getOne((long) 0);
+        willReturn(Optional.of(createBasket())).given(basketRepository.findByUserId((long)1));
+        willReturn(Optional.of(createProduct())).given(productRepository).getOne((long) 1);
         willReturn(Optional.of(createUser())).given(userRepository).getOne((long) 1);
         willReturn(status().isOk()).given(basketRepository).save(createBasket());
-        mockMvc.perform(put("/user/1/basket/0")
+
+
+        mockMvc.perform(put("/user/1/basket/1")
                 .header("userId", 1)
-                .param("productId", "0")
-                .param("numberOfProduct", "1"))
+                .param("productId", "1")
+                .param("numberOfProduct", "100"))
 
                 .andExpect(status().isOk());
     }

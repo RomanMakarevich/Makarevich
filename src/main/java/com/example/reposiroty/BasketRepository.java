@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface BasketRepository extends JpaRepository<BasketEntity, Long> {
-    @Query(value = "SELECT b.* FROM basket b JOIN user u ON b.user_id = u.id WHERE u.id = 1", nativeQuery = true)
-    BasketEntity findByUserId(Long userId);
+    @Query(value = "SELECT b.* FROM basket b JOIN user u ON b.user_id = u.id WHERE u.id = :userId", nativeQuery = true)
+    BasketEntity findByUserId(@Param("userId") Long userId);
 
 }

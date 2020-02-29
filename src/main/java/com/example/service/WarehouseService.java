@@ -21,12 +21,12 @@ public class WarehouseService {
 
     @Transactional
     public void addProduct(final long productId, final long numberOfProduct) {
-        warehouseRepository.getOne(productId)
+        warehouseRepository.findByProcuctId(productId)
                 .setNumberOfProduct(warehouseRepository.
-                        getOne(productId).getNumberOfProduct() + numberOfProduct);
+                        findByProcuctId(productId).getNumberOfProduct() + numberOfProduct);
     }
 
     public final WarehouseDTO getProduct(final long productId) {
-        return warehouseMapper.destinationToSource(warehouseRepository.getOne(productId));
+        return warehouseMapper.destinationToSource(warehouseRepository.findByProcuctId(productId));
     }
 }

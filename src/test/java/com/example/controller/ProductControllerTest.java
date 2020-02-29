@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc()
+@AutoConfigureMockMvc(addFilters = false)
 @TestPropertySource("classpath:application-test.properties")
 public class ProductControllerTest extends AbstractControllerTest {
 
@@ -26,8 +26,8 @@ public class ProductControllerTest extends AbstractControllerTest {
     @Test
     public void testProduct() throws Exception {
         willReturn(List.of(createProduct())).given(productRepository).findAll();
-        final String token = signInAsUser();
-        mockMvc.perform(get("/product-factory-app/products").header("Authorization", token))
+//        final String token = signInAsUser();
+        mockMvc.perform(get("/product-factory-app/products"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
                         "  {\n" +
