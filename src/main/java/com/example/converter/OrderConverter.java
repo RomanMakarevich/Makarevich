@@ -22,12 +22,12 @@ public class OrderConverter {
                 .companyName(orderEntity.getUserEntity().getCompanyName())
                 .address(orderEntity.getUserEntity().getAddress())
                 .accountNumber(orderEntity.getUserEntity().getAccountNumber())
-                .basketList(orderEntity
-                        .getBasketList()
-                        .stream()
-                        .map(productItemMapper::destinationToSource)
-                        .collect(Collectors.toList()))
-                .totalCost(orderEntity.getTotalCost())
+//                .basketList(orderEntity
+//                        .getBasketList()
+//                        .stream()
+//                        .map(productItemMapper::destinationToSource)
+//                        .collect(Collectors.toList()))
+//                .totalCost(orderEntity.getTotalCost())
                 .build();
 
         return orderDTO;

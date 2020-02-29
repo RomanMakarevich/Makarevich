@@ -166,7 +166,7 @@ public abstract class AbstractControllerTest {
         completeOrderEntity.setCompanyNameSeller("Завод тары для пива");
         completeOrderEntity.setAddressSeller("г. Минск, ул. Предприятий связанных с пивом");
         completeOrderEntity.setAddressSeller("2222 6666 4444 8888");
-        completeOrderEntity.setBasketEntity(createBasket());
+//        completeOrderEntity.setBasketList(createBasket().getBasketList());
         completeOrderEntity.setTotalCost((long)10000);
 
         return completeOrderEntity;

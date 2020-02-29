@@ -19,6 +19,8 @@ public class ProductItemEntity {
     @ManyToOne
     @JoinColumn(name = "basket_id", nullable = false)
     private BasketEntity basketEntity;
-
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private OrderEntity orderEntity;
 
 }

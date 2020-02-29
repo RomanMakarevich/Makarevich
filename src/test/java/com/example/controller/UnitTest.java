@@ -30,9 +30,9 @@ public class UnitTest {
                         "  \"email\" : \"vasya@email.com\",\n" +
                         "  \"password\" : \"qwerty\",\n" +
                         "  \"fio\" : \"Пупкин Василий Иванович\",\n" +
-                        "  \"company name\" : \"Пивной бар №1\",\n" +
-                        "  \"adress\" : \"г. Минск, ул. Пивная, 1\",\n" +
-                        "  \"account number\" : \"1111 2222 3333 4444\" \n" +
+                        "  \"companyName\" : \"Пивной бар №1\",\n" +
+                        "  \"address\" : \"г. Минск, ул. Пивная, 1\",\n" +
+                        "  \"accountNumber\" : \"1111 2222 3333 4444\" \n" +
                         "}"))
                 // then
                 .andExpect(status().isCreated())
@@ -60,9 +60,9 @@ public class UnitTest {
                         "  }\n" +
                         "]"));
 
-        mockMvc.perform(put("/user/1/basket/0")
+        mockMvc.perform(put("/user/1/basket/1")
                 .header("userId", 1)
-                .param("productId", "0")
+                .param("productId", "1")
                 .param("numberOfProduct", "100"))
 
                 .andExpect(status().isOk());

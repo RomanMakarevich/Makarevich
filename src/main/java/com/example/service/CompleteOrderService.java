@@ -33,7 +33,7 @@ public class CompleteOrderService {
         completeOrderEntity.setAddressSeller("г. Минск, ул. Предприятий связанных с пивом");
         completeOrderEntity.setAccountNumberSeller("2222 6666 4444 8888");
 //        completeOrderEntity.setBasketEntity(orderEntity.getBasketEntity());
-        completeOrderEntity.setTotalCost(orderEntity.getTotalCost());
+//        completeOrderEntity.setTotalCost(orderEntity.getTotalCost());
 
         orderRepository.deleteById(orderId);
         completeOrderRepository.save(completeOrderEntity);
