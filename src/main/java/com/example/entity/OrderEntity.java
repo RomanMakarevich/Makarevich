@@ -17,7 +17,7 @@ public class OrderEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity userEntity;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "orderEntity")
+    @OneToMany(mappedBy = "orderEntity")
     private List<ProductItemEntity> basketList;
     private double totalCost;
 

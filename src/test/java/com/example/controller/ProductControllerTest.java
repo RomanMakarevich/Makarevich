@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc(addFilters = false)
+@AutoConfigureMockMvc()
 @TestPropertySource("classpath:application-test.properties")
 public class ProductControllerTest extends AbstractControllerTest {
 
@@ -26,13 +26,14 @@ public class ProductControllerTest extends AbstractControllerTest {
     @Test
     public void testProduct() throws Exception {
         willReturn(List.of(createProduct())).given(productRepository).findAll();
-        mockMvc.perform(get("/product-factory-app/products"))
+        final String token = signInAsUser();
+        mockMvc.perform(get("/product-factory-app/products").header("Authorization", token))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
                         "  {\n" +
                         " \"productId\" : 0, \n" +
                         " \"productName\" : \"keg\", \n" +
-                        " \"material\" : sreel, \n" +
+                        " \"material\" : steel, \n" +
                         " \"weight\" : 7.1, \n" +
                         " \"cost\" : 100.0 \n" +
                         "  }\n" +

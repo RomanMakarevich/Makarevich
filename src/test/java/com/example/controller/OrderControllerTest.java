@@ -23,23 +23,22 @@ public class OrderControllerTest extends AbstractControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-//    @Test
-//    public void testOrder() throws Exception {
-//        willReturn(List.of(createOrder())).given(orderRepository).findAll();
-//        mockMvc.perform(get("/product-factory-app/orders"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().json("[\n" +
-//                        "  {\n" +
-//                        " \"id\" : 1, \n" +
-//                        " \"fio\" : \"Пупкин Василий Иванович\", \n" +
-//                        " \"companyName\" : \"Пивной бар №1\", \n" +
-//                        " \"adress\" : \"г. Минск, ул. Пивная, 1\", \n" +
-//                        " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
-//                        " \"productName\" : \"keg\", \n" +
-//                        " \"numberOfKeg\": 100, \n" +
-//                        " \"totalCost\" : 10000.00 \n" +
-//                        "  }\n" +
-//                        "]"));
-//
-//    }
+    @Test
+    public void getOrders() throws Exception {
+        willReturn(List.of(createOrder())).given(orderRepository).findAll();
+        mockMvc.perform(get("/product-factory-app/orders"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[\n" +
+                        "  {\n" +
+                        " \"id\" : 1, \n" +
+                        " \"fio\" : \"Пупкин Василий Иванович\", \n" +
+                        " \"companyName\" : \"Пивной бар №1\", \n" +
+                        " \"address\" : \"г. Минск, ул. Пивная, 1\", \n" +
+                        " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
+                        " \"basketList\" : [{\"productDTO\":null,\"numberOfProduct\":100}], \n" +
+                        " \"totalCost\" : 10000.00 \n" +
+                        "  }\n" +
+                        "]"));
+
+    }
 }

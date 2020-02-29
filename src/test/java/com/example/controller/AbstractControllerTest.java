@@ -59,7 +59,7 @@ public abstract class AbstractControllerTest {
     @MockBean
     protected  CompleteOrderRepository completeOrderRepository;
 
-    protected String signInAsStudent() throws Exception {
+    protected String signInAsUser() throws Exception {
         final AuthInfoEntity authInfo = createAuthInfo();
         willReturn(Optional.of(authInfo)).given(authInfoRepository).findByLogin("vasya@email.com");
 
@@ -92,9 +92,8 @@ public abstract class AbstractControllerTest {
 
     protected ProductEntity createProduct() {
         final ProductEntity productEntity = productMapper.sourceToDestination(ProductDTO.builder()
-                .productId(0)
                 .productName("keg")
-                .material("sreel")
+                .material("steel")
                 .weight(7.1)
                 .cost(100.0)
                 .build());
@@ -104,7 +103,7 @@ public abstract class AbstractControllerTest {
 
     protected UserEntity createUser() {
         final UserEntity userEntity = new UserEntity();
-        userEntity.setId((long) 0);
+        userEntity.setId((long) 1);
         userEntity.setEmail("vasya@email.com");
         userEntity.setFio("Пупкин Василий Иванович");
         userEntity.setCompanyName("Пивной бар №1");
@@ -137,15 +136,15 @@ public abstract class AbstractControllerTest {
         return productItemEntity;
     }
 
-//    protected OrderEntity createOrder() {
-//        final OrderEntity orderEntity = new OrderEntity();
-//        orderEntity.setId((long) 1);
-//        orderEntity.setUserEntity(createUser());
-//        orderEntity.setBasketEntity(createBasket());
-//        orderEntity.setTotalCost(orderEntity.getBasketEntity().getTotalCost());
-//
-//        return orderEntity;
-//    }
+    protected OrderEntity createOrder() {
+        final OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setId((long) 1);
+        orderEntity.setUserEntity(createUser());
+        orderEntity.setBasketList(List.of(createProductItem()));
+        orderEntity.setTotalCost(10000.00);
+
+        return orderEntity;
+    }
 
     protected WarehouseEntity createWarehouse(){
         final WarehouseEntity warehouseEntity = new WarehouseEntity();

@@ -71,18 +71,28 @@ public class UnitTest {
                 .header("userId", 1))
 
                 .andExpect(status().isOk())
-                .andExpect(content().json("[\n" +
-                        "  {\n" +
+                .andExpect(content().json("{\n" +
                         " \"id\" : 1, \n" +
                         " \"fio\" : \"Пупкин Василий Иванович\",\n" +
                         " \"companyName\" : \"Пивной бар №1\",\n" +
-                        " \"adress\" : \"г. Минск, ул. Пивная, 1\", \n" +
+                        " \"address\" : \"г. Минск, ул. Пивная, 1\", \n" +
                         " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
-                        " \"productName\" : \"keg\", \n" +
-                        " \"numberOfKeg\": 100, \n" +
+                        " \"basketList\" : \n" +
+                        "[\n" +
+                        "{\n" +
+                        " \"productDTO\": \n" +
+                        "{\n" +
+                        " \"productId\":0, \n" +
+                        " \"productName\":\"keg\", \n" +
+                        " \"material\":\"steel\", \n" +
+                        " \"weight\":7.1, \n" +
+                        " \"cost\":100.0 \n" +
+                        "},\n" +
+                        " \"numberOfProduct\":100 \n" +
+                        "}\n" +
+                        "],\n" +
                         " \"totalCost\" : 10000.00 \n" +
-                        "  }\n" +
-                        "]"));
+                        " }\n"));
     }
 
 }

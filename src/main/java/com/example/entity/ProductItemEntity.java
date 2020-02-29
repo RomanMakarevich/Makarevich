@@ -17,10 +17,10 @@ public class ProductItemEntity {
     private Long numberOfProduct;
     private double cost;
     @ManyToOne
-    @JoinColumn(name = "basket_id", nullable = false)
+    @JoinColumn(name = "basket_id")
     private BasketEntity basketEntity;
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id")
     private OrderEntity orderEntity;
 
 }
