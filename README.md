@@ -195,7 +195,7 @@ MRPF-8 Как работник я хочу завести новую позиц�
 
 Request:
 
-POST /product-factory-app/orders
+POST /product-factory-app/products
 
 {
   

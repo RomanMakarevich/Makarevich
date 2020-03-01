@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import com.example.dto.OrderDTO;
+import com.example.entity.OrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.junit.jupiter.api.Test;
@@ -21,9 +23,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc()
+@AutoConfigureMockMvc(addFilters = false)
 @TestPropertySource("classpath:application-test.properties")
-public class UserControllerTests extends AbstractControllerTest{
+public class UserControllerTests extends AbstractControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -67,7 +69,7 @@ public class UserControllerTests extends AbstractControllerTest{
 
     @Test
     public void testAddBasketList() throws Exception {
-        willReturn(Optional.of(createBasket())).given(basketRepository.findByUserId((long)1));
+        willReturn(Optional.of(createBasket())).given(basketRepository.findByUserId((long) 1));
         willReturn(Optional.of(createProduct())).given(productRepository).getOne((long) 1);
         willReturn(Optional.of(createUser())).given(userRepository).getOne((long) 1);
         willReturn(status().isOk()).given(basketRepository).save(createBasket());
@@ -83,8 +85,8 @@ public class UserControllerTests extends AbstractControllerTest{
     @Test
     public void testCreateOrder() throws Exception {
 
-        willReturn(createBasket()).given(basketRepository).findByUserId((long)1);
-        doNothing().when(basketRepository).deleteById((long)1);
+        willReturn(createBasket()).given(basketRepository).findByUserId((long) 1);
+        doNothing().when(basketRepository).deleteById((long) 1);
         willReturn(status().isOk()).given(orderRepository).save(createOrder());
         mockMvc.perform(post("/user/1/basket")
                 .header("userId", 1))
