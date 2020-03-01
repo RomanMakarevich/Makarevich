@@ -5,6 +5,7 @@ import com.example.converter.OrderConverter;
 import com.example.dto.OrderDTO;
 import com.example.entity.BasketEntity;
 import com.example.entity.OrderEntity;
+import com.example.entity.ProductItemEntity;
 import com.example.mapper.OrderMapper;
 import com.example.reposiroty.BasketRepository;
 import com.example.reposiroty.OrderRepository;
@@ -13,7 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -48,7 +51,8 @@ public class OrderService {
         orderEntity.setBasketList(basketEntity.getBasketList().stream().map(idRecorder::nullRecorder).collect(Collectors.toList()));
         orderEntity.setUserEntity(basketEntity.getUserEntity());
         orderEntity.setTotalCost(basketEntity.getTotalCost());
-//        orderEntity.getBasketList().get(0).setOrderEntity(orderEntity);
+        orderEntity.getBasketList().stream().forEach(productItemEntity -> productItemEntity.setOrderEntity(orderEntity));
+
 
         basketRepository.deleteById(basketId);
         orderRepository.save(orderEntity);

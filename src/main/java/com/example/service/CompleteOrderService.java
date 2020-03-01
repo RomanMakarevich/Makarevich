@@ -36,6 +36,7 @@ public class CompleteOrderService {
         completeOrderEntity.setAddressSeller("г. Минск, ул. Предприятий связанных с пивом");
         completeOrderEntity.setAccountNumberSeller("2222 6666 4444 8888");
         completeOrderEntity.setBasketList(orderEntity.getBasketList().stream().map(idRecorder::nullRecorder).collect(Collectors.toList()));
+        completeOrderEntity.getBasketList().stream().forEach(productItemEntity -> productItemEntity.setOrderEntity(orderEntity));
         completeOrderEntity.setTotalCost(orderEntity.getTotalCost());
 
         orderRepository.deleteById(orderId);
