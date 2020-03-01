@@ -2,6 +2,7 @@ package com.example.service;
 
 
 import com.example.dto.ProductDTO;
+import com.example.entity.ProductEntity;
 import com.example.mapper.ProductMapper;
 import com.example.reposiroty.ProductRepository;
 import lombok.Data;
@@ -36,6 +37,11 @@ public class ProductService {
 
     public Optional<ProductDTO> getProduct(final long id) {
         return productRepository.findById(id).map(productMapper::destinationToSource);
+    }
+
+    public void createProduct(final ProductDTO product) {
+        final ProductEntity productEntity = productMapper.sourceToDestination(product);
+        productRepository.save(productEntity);
     }
 }
 

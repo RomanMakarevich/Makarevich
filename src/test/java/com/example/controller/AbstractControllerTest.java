@@ -100,6 +100,15 @@ public abstract class AbstractControllerTest {
         return productEntity;
     }
 
+    protected ProductEntity createSaveProduct() {
+        final ProductEntity product = new ProductEntity();
+        product.setProductName("bank");
+        product.setMaterial("steel");
+        product.setWeight(0.3);
+        product.setCost(5.0);
+        return product;
+    }
+
     protected UserEntity createUser() {
         final UserEntity userEntity = new UserEntity();
         userEntity.setId((long) 1);
