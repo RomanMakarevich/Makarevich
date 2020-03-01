@@ -22,7 +22,7 @@ public class CompleteOrderEntity {
 //    @OneToOne
 //    @JoinColumn(name = "basket_id", nullable = false)
 //    private BasketEntity basketEntity;
-//    @OneToMany(mappedBy = "orderEntity")
-//    private List<ProductItemEntity> basketList;
+    @OneToMany(mappedBy = "orderEntity")
+    private List<ProductItemEntity> basketList;
     private double totalCost;
 }

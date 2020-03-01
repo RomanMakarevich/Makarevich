@@ -227,6 +227,12 @@ databaseChangeLog:
                   constraints:
                     foreignKeyName: fk_product_item_order_entity
                     references: order_entity(id)
+              - column:
+                  name: complete_order_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_product_item_complete_order
+                    references: complete_order(id)
 
 
   - changeSet:

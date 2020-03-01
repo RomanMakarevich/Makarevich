@@ -55,9 +55,9 @@ public abstract class AbstractControllerTest {
     @MockBean
     protected OrderRepository orderRepository;
     @MockBean
-    protected  WarehouseRepository warehouseRepository;
+    protected WarehouseRepository warehouseRepository;
     @MockBean
-    protected  CompleteOrderRepository completeOrderRepository;
+    protected CompleteOrderRepository completeOrderRepository;
 
     protected String signInAsUser() throws Exception {
         final AuthInfoEntity authInfo = createAuthInfo();
@@ -98,7 +98,7 @@ public abstract class AbstractControllerTest {
                 .weight(7.1)
                 .cost(100.0)
                 .build());
-
+        productEntity.setId((long) 1);
         return productEntity;
     }
 
@@ -147,18 +147,18 @@ public abstract class AbstractControllerTest {
         return orderEntity;
     }
 
-    protected WarehouseEntity createWarehouse(){
+    protected WarehouseEntity createWarehouse() {
         final WarehouseEntity warehouseEntity = new WarehouseEntity();
-        warehouseEntity.setNumberOfProduct((long)1000);
-        warehouseEntity.setId((long)1);
+        warehouseEntity.setNumberOfProduct((long) 1000);
+        warehouseEntity.setId((long) 1);
         warehouseEntity.setProductEntity(createProduct());
 
         return warehouseEntity;
     }
 
-    protected CompleteOrderEntity createCompleteOrder(){
+    protected CompleteOrderEntity createCompleteOrder() {
         final CompleteOrderEntity completeOrderEntity = new CompleteOrderEntity();
-        completeOrderEntity.setId((long)1);
+        completeOrderEntity.setId((long) 1);
         completeOrderEntity.setFio("Пупкин Василий Иванович");
         completeOrderEntity.setCompanyNameCustomer("Пивной бар №1");
         completeOrderEntity.setAddressCustomer("г. Минск, ул. Пивная, 1");
@@ -167,7 +167,7 @@ public abstract class AbstractControllerTest {
         completeOrderEntity.setAddressSeller("г. Минск, ул. Предприятий связанных с пивом");
         completeOrderEntity.setAddressSeller("2222 6666 4444 8888");
 //        completeOrderEntity.setBasketList(createBasket().getBasketList());
-        completeOrderEntity.setTotalCost((long)10000);
+        completeOrderEntity.setTotalCost((long) 10000);
 
         return completeOrderEntity;
     }

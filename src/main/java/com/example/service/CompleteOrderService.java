@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.converter.IdRecorder;
 import com.example.dto.CompleteOrderDTO;
 import com.example.entity.CompleteOrderEntity;
 import com.example.entity.OrderEntity;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.stream.Collectors;
 
 
 @AllArgsConstructor
@@ -18,6 +20,7 @@ public class CompleteOrderService {
     private final OrderRepository orderRepository;
     private final CompleteOrderMapper completeOrderMapper;
     private final CompleteOrderRepository completeOrderRepository;
+    private final IdRecorder idRecorder;
 
     @Transactional
     public void completeOrder(final Long orderId) {
@@ -32,8 +35,8 @@ public class CompleteOrderService {
         completeOrderEntity.setCompanyNameSeller("Завод тары для пива");
         completeOrderEntity.setAddressSeller("г. Минск, ул. Предприятий связанных с пивом");
         completeOrderEntity.setAccountNumberSeller("2222 6666 4444 8888");
-//        completeOrderEntity.setBasketEntity(orderEntity.getBasketEntity());
-//        completeOrderEntity.setTotalCost(orderEntity.getTotalCost());
+        completeOrderEntity.setBasketList(orderEntity.getBasketList().stream().map(idRecorder::nullRecorder).collect(Collectors.toList()));
+        completeOrderEntity.setTotalCost(orderEntity.getTotalCost());
 
         orderRepository.deleteById(orderId);
         completeOrderRepository.save(completeOrderEntity);

@@ -22,5 +22,8 @@ public class ProductItemEntity {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private OrderEntity orderEntity;
+    @ManyToOne
+    @JoinColumn(name = "complete_order_id")
+    private CompleteOrderEntity completeOrderEntity;
 
 }

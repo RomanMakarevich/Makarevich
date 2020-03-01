@@ -11,8 +11,8 @@ public class WarehouseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "productName", nullable = false)
+    @OneToOne(optional = false)
+    @JoinColumn(name = "product_name", nullable = false)
     private ProductEntity productEntity;
     private Long numberOfProduct;
     private double cost;

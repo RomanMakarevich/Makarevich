@@ -69,7 +69,6 @@ public class UserControllerTests extends AbstractControllerTest{
         willReturn(Optional.of(createUser())).given(userRepository).getOne((long) 1);
         willReturn(status().isOk()).given(basketRepository).save(createBasket());
 
-
         mockMvc.perform(put("/user/1/basket/1")
                 .header("userId", 1)
                 .param("productId", "1")
@@ -81,7 +80,7 @@ public class UserControllerTests extends AbstractControllerTest{
     @Test
     public void testCreateOrder() throws Exception {
 
-        willReturn(Optional.of(createBasket())).given(basketRepository).getOne((long)1);
+        willReturn(createBasket()).given(basketRepository).findByUserId((long)1);
         doNothing().when(basketRepository).deleteById((long)1);
         willReturn(status().isOk()).given(orderRepository).save(createOrder());
         mockMvc.perform(post("/user/1/basket")

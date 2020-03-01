@@ -8,6 +8,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.BDDMockito.willReturn;
 import static org.mockito.Mockito.doNothing;
@@ -23,15 +24,15 @@ public class CompleteOrderControllerTest extends AbstractControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-//    @Test
-//    public void completeOrder() throws Exception {
-//        willReturn(List.of(createOrder())).given(orderRepository).findAll();
-//        doNothing().when(orderRepository).deleteById((long)1);
-//        willReturn(status().isOk()).given(completeOrderRepository).save(createCompleteOrder());
-//
-//        mockMvc.perform(post("/product-factory-app/orders/1")
-//                .header("orderId", 1))
-//
-//                .andExpect(status().isOk());
-//    }
+    @Test
+    public void completeOrder() throws Exception {
+        willReturn(Optional.of(createOrder())).given(orderRepository).findById((long)1);
+        doNothing().when(orderRepository).deleteById((long)1);
+        willReturn(status().isOk()).given(completeOrderRepository).save(createCompleteOrder());
+
+        mockMvc.perform(post("/product-factory-app/orders/1")
+                .header("orderId", 1))
+
+                .andExpect(status().isOk());
+    }
 }
