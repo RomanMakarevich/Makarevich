@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc(addFilters = false)
+@AutoConfigureMockMvc()
 @TestPropertySource("classpath:application-test.properties")
 public class UserControllerTests extends AbstractControllerTest{
 
@@ -31,6 +31,8 @@ public class UserControllerTests extends AbstractControllerTest{
     @Test
     public void testUserSignUpIsCreated() throws Exception {
         // given
+        willReturn(Optional.empty(), Optional.of(createAuthInfo())).given(authInfoRepository)
+                .findByLogin("vasya@email.com");
         // when
         mockMvc.perform(post("/user/sign-up")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -50,6 +52,7 @@ public class UserControllerTests extends AbstractControllerTest{
     @Test
     public void testUserSignInIsOk() throws Exception {
         // given
+        signInAsUser();
         // when
         mockMvc.perform(post("/user/sign-in")
                 .contentType(MediaType.APPLICATION_JSON)

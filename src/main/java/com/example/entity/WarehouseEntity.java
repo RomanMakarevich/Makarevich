@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
-@Entity(name = "waryhouse")
+@Entity(name = "warehouse")
 public class WarehouseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(optional = false)
-    @JoinColumn(name = "product_name", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity productEntity;
     private Long numberOfProduct;
     private double cost;

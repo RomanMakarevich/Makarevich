@@ -38,11 +38,9 @@ public abstract class AbstractControllerTest {
     @Autowired
     protected ObjectMapper objectMapper;
     @Autowired
-    protected OrderMapper orderMapper;
-    @Autowired
-    private ProductMapper productMapper;
-    @Autowired
     protected PasswordEncoder passwordEncoder;
+    @Autowired
+    protected ProductMapper productMapper;
 
     @MockBean
     protected AuthInfoRepository authInfoRepository;
@@ -74,7 +72,7 @@ public abstract class AbstractControllerTest {
                 .andExpect(jsonPath("token", hasLength(144)))
                 .andReturn().getResponse().getContentAsString();
 
-        verify(authInfoRepository, times(1));
+//        verify(authInfoRepository, times(1));
         return "Bearer " + objectMapper.readValue(response, UserSignInResponseDTO.class).getToken();
     }
 

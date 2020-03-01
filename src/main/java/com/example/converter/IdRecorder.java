@@ -10,9 +10,4 @@ public class IdRecorder {
         productItemEntity.setBasketEntity(null);
         return productItemEntity;
     }
-
-    public ProductItemEntity OrderIdRecorder(ProductItemEntity productItemEntity, OrderEntity orderEntity){
-        productItemEntity.setOrderEntity(orderEntity);
-        return productItemEntity;
-    }
 }

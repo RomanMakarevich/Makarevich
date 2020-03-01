@@ -22,7 +22,6 @@ public class ProductService {
     @Transactional
     public void init() {
         productRepository.save(productMapper.sourceToDestination(ProductDTO.builder()
-                .productId(0)
                 .productName("keg")
                 .material("steel")
                 .weight(7.1)
