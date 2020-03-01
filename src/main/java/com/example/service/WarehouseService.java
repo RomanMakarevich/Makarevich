@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dto.WarehouseDTO;
+import com.example.entity.WarehouseEntity;
 import com.example.mapper.WarehouseMapper;
 import com.example.reposiroty.WarehouseRepository;
 import lombok.NoArgsConstructor;
@@ -17,9 +18,9 @@ public class WarehouseService {
 
     @Transactional
     public void addProduct(final long productId, final long numberOfProduct) {
-        warehouseRepository.findByProductId(productId)
-                .setNumberOfProduct(warehouseRepository.
-                        findByProductId(productId).getNumberOfProduct() + numberOfProduct);
+        final WarehouseEntity warehouseEntity = warehouseRepository.findByProductId(productId);
+        warehouseEntity.setNumberOfProduct(warehouseRepository.
+                findByProductId(productId).getNumberOfProduct() + numberOfProduct);
     }
 
     public final WarehouseDTO getProduct(final long productId) {

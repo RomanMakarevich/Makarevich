@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
 
+import static com.example.security.Roles.USER;
 import static org.mockito.BDDMockito.willReturn;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -69,10 +70,10 @@ public class UserControllerTests extends AbstractControllerTest {
 
     @Test
     public void testAddBasketList() throws Exception {
-        willReturn(Optional.of(createBasket())).given(basketRepository.findByUserId((long) 1));
-        willReturn(Optional.of(createProduct())).given(productRepository).getOne((long) 1);
+//        willReturn(Optional.of(createBasket())).given(basketRepository.findByUserId((long) 1));
+//        willReturn(Optional.of(createProduct())).given(productRepository).getOne((long) 1);
         willReturn(Optional.of(createUser())).given(userRepository).getOne((long) 1);
-        willReturn(status().isOk()).given(basketRepository).save(createBasket());
+//        willReturn(status().isOk()).given(basketRepository).save(createBasket());
 
         mockMvc.perform(put("/user/1/basket/1")
                 .header("userId", 1)
@@ -92,19 +93,27 @@ public class UserControllerTests extends AbstractControllerTest {
                 .header("userId", 1))
 
                 .andExpect(status().isOk())
-                .andExpect(content().json("[\n" +
-                        "  {\n" +
+                .andExpect(content().json(" {\n" +
                         " \"id\" : 1, \n" +
                         " \"fio\" : \"Пупкин Василий Иванович\",\n" +
                         " \"companyName\" : \"Пивной бар №1\",\n" +
-                        " \"adress\" : \"г. Минск, ул. Пивная, 1\", \n" +
+                        " \"address\" : \"г. Минск, ул. Пивная, 1\", \n" +
                         " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
-                        " \"productName\" : \"keg\", \n" +
-                        " \"numberOfKeg\": 100, \n" +
-                        " \"totalCost\" : 1000 \n" +
-                        "  }\n" +
-                        "]"));
-
+                        " \"basketList\" : \n" +
+                        "[\n" +
+                        "{\n" +
+                        " \"productDTO\": \n" +
+                        "{\n" +
+                        " \"productId\":0, \n" +
+                        " \"productName\":\"keg\", \n" +
+                        " \"material\":\"steel\", \n" +
+                        " \"weight\":7.1, \n" +
+                        " \"cost\":100.0 \n" +
+                        "},\n" +
+                        " \"numberOfProduct\":100 \n" +
+                        "}\n" +
+                        "],\n" +
+                        " \"totalCost\" : 10000.0 \n" +
+                        "  }\n"));
     }
-
 }

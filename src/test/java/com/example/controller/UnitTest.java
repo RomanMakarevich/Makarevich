@@ -13,10 +13,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc(addFilters = false)
+@AutoConfigureMockMvc()
 @TestPropertySource("classpath:application-test.properties")
 public class UnitTest {
-
+    private final String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXN5YUBlbWFpbC5jb20iLCJleHAiOjE1ODE4MTY1OTQsImlhdCI6MTU4MTc4MDU5NH0.zLBFfajJ1RuyIaTuYpsa-YdjdZP1DIIpxLWbOZS6YGo";
     @Autowired
     private MockMvc mockMvc;
 
@@ -48,7 +48,7 @@ public class UnitTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("token", hasLength(144)));
 
-        mockMvc.perform(get("/product-factory-app/products"))
+        mockMvc.perform(get("/product-factory-app/products").header("Authorization", token))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
                         "  {\n" +
@@ -60,14 +60,14 @@ public class UnitTest {
                         "  }\n" +
                         "]"));
 
-        mockMvc.perform(put("/user/1/basket/1")
+        mockMvc.perform(put("/user/1/basket/1").header("Authorization", token)
                 .header("userId", 1)
                 .param("productId", "1")
                 .param("numberOfProduct", "100"))
 
                 .andExpect(status().isOk());
 
-        mockMvc.perform(post("/user/1/basket")
+        mockMvc.perform(post("/user/1/basket").header("Authorization", token)
                 .header("userId", 1))
 
                 .andExpect(status().isOk())
