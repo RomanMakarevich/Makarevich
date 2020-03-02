@@ -35,8 +35,8 @@ public class ProductService {
         return productRepository.findAll().stream().map(productMapper::destinationToSource).collect(Collectors.toList());
     }
 
-    public Optional<ProductDTO> getProduct(final long id) {
-        return productRepository.findById(id).map(productMapper::destinationToSource);
+    public ProductDTO getProduct(final long id) {
+        return productRepository.findById(id).map(productMapper::destinationToSource).get();
     }
 
     public void createProduct(final ProductDTO product) {

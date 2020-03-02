@@ -72,10 +72,11 @@ Response: 200 OK
 
 {
 
+       "id" : 1,
        "productName" : "keg",
        "material" : "steel",
        "weight" : 7.1,
-       "numberOfProduct" : 1000   
+       "cost" : 100.0   
 }
 
 
@@ -95,7 +96,7 @@ Response: 200 OK
 
 Request:
 
-POST /product-factory-app/user/${userId}/basket/
+POST /product-factory-app/user/{userId}/basket/
 
 Response: 200 OK
 
@@ -120,7 +121,7 @@ Response: 200 OK
 Request:
 
 
-PUT /product-factory-app/products/${productId}
+PUT /product-factory-app/products/{productId}
  
   {
   
@@ -257,3 +258,26 @@ Response: 200 OK
      "totalCost":10000.00
      
   }
+  
+**MRPF-11 Как клиент, я хочу получить продукт по id**
+
+Request:
+
+GET /product-factory-app/products/{productId}
+
+{
+
+"productId" : 1
+
+}
+
+Response: 200 OK
+
+{
+
+       "id" : 1,
+       "productName" : "keg",
+       "material" : "steel",
+       "weight" : 7.1,
+       "cost" : 100.0   
+}

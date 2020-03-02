@@ -29,7 +29,7 @@ public class ProductControllerTest extends AbstractControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void testProduct() throws Exception {
+    public void testGetListOfProduct() throws Exception {
         willReturn(List.of(createProduct())).given(productRepository).findAll();
         final String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXN5YUBlbWFpbC5jb20iLCJleHAiOjE1ODE4MTY1OTQsImlhdCI6MTU4MTc4MDU5NH0.zLBFfajJ1RuyIaTuYpsa-YdjdZP1DIIpxLWbOZS6YGo";
         mockMvc.perform(get("/product-factory-app/products").header("Authorization", token))
@@ -37,6 +37,25 @@ public class ProductControllerTest extends AbstractControllerTest {
                 .andExpect(content().json("[\n" +
                         "  {\n" +
                         " \"productId\" : 0, \n" +
+                        " \"productName\" : \"keg\", \n" +
+                        " \"material\" : steel, \n" +
+                        " \"weight\" : 7.1, \n" +
+                        " \"cost\" : 100.0 \n" +
+                        "  }\n" +
+                        "]"));
+
+    }
+
+    @Test
+    public void testGetProduct() throws Exception {
+        willReturn(createProduct()).given(productRepository).getOne((long) 1);
+        final String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXN5YUBlbWFpbC5jb20iLCJleHAiOjE1ODE4MTY1OTQsImlhdCI6MTU4MTc4MDU5NH0.zLBFfajJ1RuyIaTuYpsa-YdjdZP1DIIpxLWbOZS6YGo";
+        mockMvc.perform(get("/product-factory-app/products/1").header("Authorization", token)
+                .header("productId", 1))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[\n" +
+                        "  {\n" +
+                        " \"productId\" : 1, \n" +
                         " \"productName\" : \"keg\", \n" +
                         " \"material\" : steel, \n" +
                         " \"weight\" : 7.1, \n" +

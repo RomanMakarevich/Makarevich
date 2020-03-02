@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.OrderDTO;
 import com.example.dto.ProductDTO;
 import com.example.service.ProductService;
 import lombok.Data;
@@ -28,5 +29,10 @@ public class ProductController {
     @PostMapping(value = "/product/orders")
     public void createProduct(@RequestBody final ProductDTO product) {
         productService.createProduct(product);
+    }
+
+    @GetMapping(value = "/products/{productId}")
+    public ProductDTO getProduct(@PathVariable final Long productId){
+        return productService.getProduct(productId);
     }
 }
