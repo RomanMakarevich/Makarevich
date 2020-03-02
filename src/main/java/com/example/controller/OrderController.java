@@ -5,6 +5,7 @@ import com.example.service.OrderService;
 import lombok.Data;
 import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,10 @@ public class OrderController {
     @GetMapping(value = "/orders")
     public List<OrderDTO> getList() {
         return orderService.getList();
+    }
+
+    @GetMapping(value = "/orders/{orderId}")
+    public OrderDTO getOrder(@PathVariable final Long orderId){
+        return orderService.getOrder(orderId);
     }
 }

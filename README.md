@@ -144,15 +144,25 @@ Response: 200 OK
 
   {
   
-      "id" : 1,
-      "fio" : "Пупкин Василий Иванович",
-      "companyName" : "Пивной бар №1",
-      "adress" : "г. Минск, ул. Пивная, 1",
-      "accountNumber" : "1111 2222 3333 4444",
-      "product" : "keg", 
-      "numberOfProduct": 100,
-      "totalCost" : 1000 
-      
+     "id":1,
+     "fio":"Пупкин Василий Иванович",
+     "companyName":"Пивной бар №1",
+     "address":"г. Минск, ул. Пивная, 1",
+     "accountNumber":"1111 2222 3333 4444",
+     "basketList":[
+        {
+           "productDTO":{
+              "productId":0,
+              "productName":"keg",
+              "material":"steel",
+              "weight":7.1,
+              "cost":100.0
+           },
+           "numberOfProduct":100
+        }
+     ],
+     "totalCost":10000.00
+     
   }
 
 
@@ -216,3 +226,34 @@ Request:
 PUT /product-factory-app/user/{userId}/basket/{productId}
 
 Response: 200 OK
+
+**MRPF-11 Как работник, я хочу получить заказ с id=1.**
+
+Request:
+
+GET /product-factory-app/orders/{orderId}
+
+Response: 200 OK
+
+{
+  
+     "id":1,
+     "fio":"Пупкин Василий Иванович",
+     "companyName":"Пивной бар №1",
+     "address":"г. Минск, ул. Пивная, 1",
+     "accountNumber":"1111 2222 3333 4444",
+     "basketList":[
+        {
+           "productDTO":{
+              "productId":0,
+              "productName":"keg",
+              "material":"steel",
+              "weight":7.1,
+              "cost":100.0
+           },
+           "numberOfProduct":100
+        }
+     ],
+     "totalCost":10000.00
+     
+  }

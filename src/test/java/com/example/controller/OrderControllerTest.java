@@ -54,4 +54,32 @@ public class OrderControllerTest extends AbstractControllerTest {
                         "]"));
 
     }
+    @Test
+    public void getOrder() throws Exception{
+        willReturn(createOrder()).given(orderRepository).getOne((long)1);
+        mockMvc.perform(get("/product-factory-app/orders/1").header("orderId", 1))
+                .andExpect(status().isOk())
+                .andExpect(content().json("  {\n" +
+                        " \"id\" : 1, \n" +
+                        " \"fio\" : \"Пупкин Василий Иванович\", \n" +
+                        " \"companyName\" : \"Пивной бар №1\", \n" +
+                        " \"address\" : \"г. Минск, ул. Пивная, 1\", \n" +
+                        " \"accountNumber\" : \"1111 2222 3333 4444\", \n" +
+                        " \"basketList\" : \n" +
+                        "[\n" +
+                        "{\n" +
+                        " \"productDTO\": \n" +
+                        "{\n" +
+                        " \"productId\":0, \n" +
+                        " \"productName\":\"keg\", \n" +
+                        " \"material\":\"steel\", \n" +
+                        " \"weight\":7.1, \n" +
+                        " \"cost\":100.0 \n" +
+                        "},\n" +
+                        " \"numberOfProduct\":100 \n" +
+                        "}\n" +
+                        "],\n" +
+                        " \"totalCost\" : 10000.00 \n" +
+                        "  }\n"));
+    }
 }
